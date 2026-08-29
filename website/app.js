@@ -6,7 +6,7 @@ const CONFIG = {
 };
 
 const STORAGE_PREFIX = "entrenamiento-padre-v1";
-const state = { plan: null, selectedIndex: null, records: {}, session: {}, completed: false };
+const state = { plan: null, selectedIndex: null, records: {}, session: {}, warmup: {}, completed: false };
 const $ = (selector) => document.querySelector(selector);
 
 document.addEventListener("DOMContentLoaded", init);
@@ -82,6 +82,7 @@ function loadDay(index) {
   const saved = JSON.parse(localStorage.getItem(storageKey(index)) || "null");
   state.records = Object.fromEntries(state.plan.days[index].exercises.map((exercise, i) => [i, { ...blankRecord(exercise), ...(saved?.records?.[i] || {}), reps: Array.from({ length: exercise.sets }, (_, setIndex) => saved?.records?.[i]?.reps?.[setIndex] || "") }]));
   state.session = saved?.session || { status: "normal", painStart: "", painEnd: "", painNext: "", comments: "" };
+  state.warmup = saved?.warmup || {};
   state.completed = Boolean(saved?.completed);
 }
 
@@ -93,6 +94,7 @@ function saveDay() {
     day: state.plan.days[state.selectedIndex].id,
     records: state.records,
     session: state.session,
+    warmup: state.warmup,
     completed: state.completed,
     updatedAt: new Date().toISOString()
   }));
@@ -125,6 +127,7 @@ function render() {
   const isRest = state.selectedIndex < 0;
   $("#session-section").classList.toggle("hidden", isRest);
   $("#workout-section").classList.toggle("hidden", isRest);
+  $("#warmup-section").classList.toggle("hidden", isRest);
   $("#rest-day").classList.toggle("hidden", !isRest);
   if (isRest) {
     $("#day-label").textContent = "FIN DE SEMANA";
@@ -135,10 +138,13 @@ function render() {
   } else {
     loadDay(state.selectedIndex);
     const day = state.plan.days[state.selectedIndex];
+    const warmupDone = state.plan.warmup.steps.every((step) => state.warmup[step.id]);
+    $("#workout-section").classList.toggle("hidden", !warmupDone);
     $("#day-label").textContent = day.label.toUpperCase();
     $("#day-title").textContent = day.name;
     $("#day-focus").textContent = day.focus;
     $("#exercise-count").textContent = `${day.exercises.length} ejercicios`;
+    renderWarmup();
     renderSessionFields();
     renderExercises(day);
     renderSummary();
@@ -146,6 +152,14 @@ function render() {
     $("#completion-note").textContent = state.completed ? "✓ Sesión terminada. Los datos siguen guardados." : "";
   }
   [...document.querySelectorAll(".day-tab")].forEach((button, index) => button.setAttribute("aria-selected", String(index === state.selectedIndex)));
+}
+
+function renderWarmup() {
+  const steps = state.plan.warmup.steps;
+  $("#warmup-list").innerHTML = steps.map((step) => `<div class="warmup-step"><input type="checkbox" id="warmup-${step.id}" data-warmup="${step.id}" ${state.warmup[step.id] ? "checked" : ""}><label for="warmup-${step.id}"><strong>${step.title}</strong><span class="warmup-detail">${step.detail}</span></label></div>`).join("");
+  const done = steps.filter((step) => state.warmup[step.id]).length;
+  $("#warmup-status").textContent = `${done}/${steps.length}`;
+  $("#warmup-required").classList.toggle("hidden", done === steps.length);
 }
 
 function renderSessionFields() {
@@ -183,6 +197,8 @@ function handleInput(event) {
   const field = event.target.dataset.sessionField;
   if (field) { state.session[field] = event.target.value; saveDay(); renderSummary(); return; }
   const index = event.target.dataset.exercise;
+  const warmup = event.target.dataset.warmup;
+  if (warmup) { state.warmup[warmup] = event.target.checked; saveDay(); render(); return; }
   if (index === undefined) return;
   const record = state.records[index] || blankRecord(state.plan.days[state.selectedIndex].exercises[index]);
   const fieldName = event.target.dataset.field;
@@ -221,6 +237,8 @@ function sessionSummary() {
   lines.push(`Dolor lumbar al empezar: ${state.session.painStart === "" ? "-" : `${state.session.painStart}/10`}`);
   lines.push(`Dolor lumbar al terminar: ${state.session.painEnd === "" ? "-" : `${state.session.painEnd}/10`}`);
   lines.push(`Dolor lumbar al día siguiente: ${state.session.painNext === "" ? "pendiente" : `${state.session.painNext}/10`}`);
+  const warmupDone = state.plan.warmup.steps.every((step) => state.warmup[step.id]);
+  lines.push(`Calentamiento: ${warmupDone ? "completo" : "incompleto"}`);
   lines.push(`Estado: ${state.session.status === "normal" ? "Normal" : state.session.status === "tired" ? "Cansado" : "Muy cansado / con molestias"}`);
   lines.push(`Comentarios: ${state.session.comments || "-"}`);
   return lines.join("\n");
@@ -228,7 +246,18 @@ function sessionSummary() {
 
 function renderSummary() { if (state.selectedIndex >= 0) $("#summary-text").textContent = sessionSummary(); }
 
-function finishSession() { state.completed = true; saveDay(); renderSummary(); $("#completion-note").textContent = "✓ Sesión terminada. Los datos siguen guardados."; $("#summary-section").classList.remove("hidden"); $("#summary-section").scrollIntoView({ behavior: "smooth" }); }
+function finishSession() {
+  if (!state.plan.warmup.steps.every((step) => state.warmup[step.id])) {
+    $("#warmup-required").scrollIntoView({ behavior: "smooth" });
+    return;
+  }
+  state.completed = true;
+  saveDay();
+  renderSummary();
+  $("#completion-note").textContent = "✓ Sesión terminada. Los datos siguen guardados.";
+  $("#summary-section").classList.remove("hidden");
+  $("#summary-section").scrollIntoView({ behavior: "smooth" });
+}
 async function copySummary() { await copyText(sessionSummary()); showActionMessage("Resumen copiado"); }
 async function copyText(text) { if (navigator.clipboard) return navigator.clipboard.writeText(text); const area = document.createElement("textarea"); area.value = text; document.body.appendChild(area); area.select(); document.execCommand("copy"); area.remove(); }
 function showActionMessage(message) { const status = $("#save-status"); status.textContent = `✓ ${message}`; setTimeout(() => { status.textContent = "✓ Guardado"; }, 1800); }

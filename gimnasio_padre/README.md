@@ -46,7 +46,7 @@ Cada sesion esta pensada para unos 45-60 minutos: 5-10 minutos de calentamiento,
 ## 5. Calentamiento y series de aproximacion
 
 - Hacer 5 minutos aproximadamente de bicicleta, cinta o eliptica a intensidad baja/moderada.
-- Añadir 2-3 minutos de movimientos generales sencillos solo si ayudan: rotaciones de hombros, movimientos suaves de brazos y cadera, elevaciones de talones o sentarse y levantarse de un banco.
+- Completar 2-3 minutos de movimientos generales sencillos: rotaciones de hombros, movimientos suaves de brazos y cadera, elevaciones de talones o sentarse y levantarse de un banco.
 - Antes del primer ejercicio importante, hacer series de aproximacion con poca carga y pocas repeticiones, aumentando de forma gradual sin cansarse. Repetir una aproximacion breve al cambiar a otro patron exigente.
 - A las 06:00 importa mas sentirse preparado que completar un protocolo largo. Si el calentamiento empeora una molestia, se detiene y se reevalua.
 

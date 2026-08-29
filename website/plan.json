@@ -2,6 +2,14 @@
   "version": "0.1",
   "title": "Plan activo",
   "duration": "45-60 minutos",
+  "warmup": {
+    "title": "Calentamiento obligatorio",
+    "steps": [
+      { "id": "cardio", "title": "Cardio", "detail": "Unos 5 minutos en bicicleta, cinta o elíptica, a intensidad baja o moderada." },
+      { "id": "general", "title": "Movimientos generales", "detail": "2-3 minutos: rotaciones de hombros, movimientos suaves de brazos y cadera, elevaciones de talones o sentarse y levantarse de un banco." },
+      { "id": "approach", "title": "Series de aproximación", "detail": "Antes del primer ejercicio importante: poco peso, pocas repeticiones y aumentos progresivos sin cansarse. Repetir al cambiar a otro patrón exigente." }
+    ]
+  },
   "days": [
     {
       "id": "push",

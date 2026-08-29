@@ -37,6 +37,15 @@ h2 { margin-bottom: 8px; font-size: clamp(1.45rem, 4vw, 2rem); }
 .day-tab[aria-selected="true"] { color: var(--green); }
 .rest-card { margin-top: 20px; padding: 24px; }
 .rest-card h2 { margin-bottom: 4px; }
+.warmup-card { margin-top: 20px; padding: 22px; background: #fffaf3; border: 2px solid #e2b27e; border-radius: 14px; box-shadow: var(--shadow); }
+.warmup-step { display: grid; grid-template-columns: 32px 1fr; gap: 11px; align-items: start; padding: 13px 0; border-top: 1px solid #ecd9c4; }
+.warmup-step:first-child { border-top: 0; }
+.warmup-step input { width: 28px; height: 28px; min-height: 28px; margin: 0; accent-color: var(--green); }
+.warmup-step label { cursor: pointer; }
+.warmup-step strong { display: block; margin-bottom: 2px; }
+.warmup-detail { color: var(--muted); font-size: .92rem; }
+.warmup-safety { margin: 12px 0 0; color: #765333; font-size: .9rem; }
+.warmup-required { margin: 14px 0 0; color: #8d4817; font-weight: 700; }
 #session-section, #workout-section, .summary-section { margin-top: 20px; padding: 22px; }
 .section-heading { display: flex; justify-content: space-between; gap: 15px; align-items: flex-start; margin-bottom: 18px; }
 .section-heading h2 { margin-bottom: 0; }
