@@ -1,0 +1,10 @@
+{
+  "name": "Entrenamiento semanal",
+  "short_name": "Entrenamiento",
+  "lang": "es",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f7f5",
+  "theme_color": "#163b35",
+  "description": "Consulta y registro local del entrenamiento"
+}

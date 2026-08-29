@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163b35">
+  <meta name="description" content="Registro sencillo del entrenamiento semanal">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <title>Entrenamiento</title>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">ENTRENAMIENTO</p>
+      <h1>Qué toca hoy</h1>
+      <p id="week-label" class="week-label"></p>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="today-panel" aria-labelledby="day-title">
+      <div>
+        <p id="day-label" class="day-label"></p>
+        <h2 id="day-title">Cargando...</h2>
+        <p id="day-focus" class="muted"></p>
+      </div>
+      <div class="session-meta">
+        <strong id="exercise-count"></strong>
+        <span>45-60 min aprox.</span>
+      </div>
+    </section>
+
+    <nav class="day-nav" aria-label="Navegación de días">
+      <button id="previous-day" class="nav-button" type="button">← Anterior</button>
+      <button id="today-button" class="nav-button today-button" type="button">Hoy</button>
+      <button id="next-day" class="nav-button" type="button">Siguiente →</button>
+    </nav>
+    <div id="day-picker" class="day-picker" role="tablist" aria-label="Días laborables"></div>
+
+    <section id="rest-day" class="rest-card hidden" aria-live="polite">
+      <h2>Hoy no hay entrenamiento programado</h2>
+      <p>Puedes descansar, pasear o consultar otro día con los botones de arriba.</p>
+    </section>
+
+    <section id="session-section" class="hidden" aria-labelledby="session-data-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ANTES DE EMPEZAR</p>
+          <h2 id="session-data-title">Estado de la sesión</h2>
+        </div>
+        <span id="save-status" class="save-status" role="status">✓ Guardado</span>
+      </div>
+      <div class="session-fields">
+        <label>Estado del día
+          <select data-session-field="status">
+            <option value="normal">Normal</option>
+            <option value="tired">Cansado</option>
+            <option value="very-tired">Muy cansado / con molestias</option>
+          </select>
+        </label>
+        <label>Dolor lumbar al empezar <span class="unit">0-10</span>
+          <select data-session-field="painStart"><option value="">-</option><script>for(let i=0;i<=10;i++)document.write(`<option>${i}</option>`)</script></select>
+        </label>
+        <label>Dolor lumbar al terminar <span class="unit">0-10</span>
+          <select data-session-field="painEnd"><option value="">-</option><script>for(let i=0;i<=10;i++)document.write(`<option>${i}</option>`)</script></select>
+        </label>
+        <label class="wide">Dolor lumbar al día siguiente <span class="unit">0-10</span>
+          <select data-session-field="painNext"><option value="">Pendiente</option><script>for(let i=0;i<=10;i++)document.write(`<option>${i}</option>`)</script></select>
+        </label>
+        <label class="wide">Comentarios generales
+          <textarea rows="2" data-session-field="comments" placeholder="¿Cómo te has encontrado?"></textarea>
+        </label>
+      </div>
+    </section>
+
+    <section id="workout-section" class="hidden" aria-labelledby="workout-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LO PROGRAMADO Y LO REALIZADO</p>
+          <h2 id="workout-title">Ejercicios</h2>
+        </div>
+      </div>
+      <div id="exercise-list"></div>
+      <div class="finish-panel">
+        <button id="finish-button" class="primary-button" type="button">✅ Terminar entrenamiento</button>
+        <p id="completion-note" class="completion-note" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="summary-section" class="summary-section hidden" aria-labelledby="summary-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LISTO PARA ENVIAR</p>
+          <h2 id="summary-title">Resumen del entrenamiento</h2>
+        </div>
+      </div>
+      <pre id="summary-text" class="summary-text"></pre>
+      <div class="share-actions">
+        <button id="whatsapp-button" class="share-button whatsapp" type="button">📱 Enviar por WhatsApp</button>
+        <button id="email-button" class="share-button email" type="button">✉️ Enviar por email</button>
+        <button id="share-button" class="share-button share hidden" type="button">↗️ Compartir</button>
+        <button id="copy-button" class="share-button secondary" type="button">📋 Copiar resumen</button>
+      </div>
+    </section>
+
+    <details class="options">
+      <summary>Opciones</summary>
+      <button id="export-button" class="text-button" type="button">💾 Exportar datos</button>
+      <button id="clear-button" class="text-button danger" type="button">Borrar datos de este día</button>
+    </details>
+  </main>
+  <footer><small>Los datos se guardan solo en este navegador.</small></footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

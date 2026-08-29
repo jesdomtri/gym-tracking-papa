@@ -1,0 +1,67 @@
+{
+  "version": "0.1",
+  "title": "Plan activo",
+  "duration": "45-60 minutos",
+  "days": [
+    {
+      "id": "push",
+      "label": "Lunes",
+      "name": "PUSH",
+      "focus": "Empuje horizontal, empuje vertical y complementos",
+      "exercises": [
+        { "name": "Empuje horizontal", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Maquina, press con mancuernas, variante con apoyo", "note": "Espalda apoyada cuando sea posible. No arquear la zona lumbar." },
+        { "name": "Empuje vertical", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Maquina, mancuernas sentado, recorrido parcial comodo", "note": "Mantener el tronco estable y no compensar con la espalda." },
+        { "name": "Complemento de pecho u hombro", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "3", "rest": "90-120 s", "alternatives": "Apertura, elevacion lateral, otro empuje ligero", "optional": true },
+        { "name": "Triceps", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "alternatives": "Polea, maquina, mancuerna sencilla", "optional": true }
+      ]
+    },
+    {
+      "id": "pull",
+      "label": "Martes",
+      "name": "PULL",
+      "focus": "Tirones vertical y horizontal, espalda alta y brazos",
+      "exercises": [
+        { "name": "Tiron vertical", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Polea, maquina, variante con apoyo", "note": "No usar impulso." },
+        { "name": "Tiron horizontal", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Remo sentado, maquina con pecho apoyado, polea", "note": "Priorizar apoyo del pecho si reduce el esfuerzo lumbar." },
+        { "name": "Deltoides posterior/escapula", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Apertura inversa, polea, maquina", "optional": true },
+        { "name": "Biceps", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "alternatives": "Mancuernas, polea, maquina", "optional": true }
+      ]
+    },
+    {
+      "id": "legs-a",
+      "label": "Miercoles",
+      "name": "LEGS A",
+      "focus": "Dominante de rodilla, cadera, gemelos y core",
+      "exercises": [
+        { "name": "Dominante de rodilla", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Prensa, sentarse-levantarse, maquina guiada" },
+        { "name": "Extension de cadera", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "alternatives": "Puente sencillo, maquina, bisagra ligera guiada", "note": "La espalda baja no debe ser el limitante principal." },
+        { "name": "Flexion de rodilla o gemelos", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Maquina, variante de pie o sentado", "optional": true },
+        { "name": "Core anti-movimiento", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "alternatives": "Prensa de manos, carga transportada ligera, maquina estable", "optional": true }
+      ]
+    },
+    {
+      "id": "torso",
+      "label": "Jueves",
+      "name": "TORSO",
+      "focus": "Empuje y tiron equilibrados",
+      "exercises": [
+        { "name": "Empuje horizontal", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Maquina, mancuernas, variante con apoyo" },
+        { "name": "Tiron horizontal", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Remo con pecho apoyado, maquina, polea" },
+        { "name": "Tiron vertical o empuje vertical", "sets": 2, "reps": "8-12", "rir": "3", "rest": "2 min", "alternatives": "Elegir el patron menos trabajado y mejor tolerado" },
+        { "name": "Complemento opcional", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Hombro posterior, brazos o pecho ligero", "optional": true }
+      ]
+    },
+    {
+      "id": "legs-b",
+      "label": "Viernes",
+      "name": "LEGS B",
+      "focus": "Rodilla o cadera, cadena posterior prudente y core",
+      "exercises": [
+        { "name": "Dominante de rodilla o cadera", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3-4", "rest": "2-3 min", "alternatives": "Elegir el patron que este mas recuperado" },
+        { "name": "Flexion de rodilla/cadena posterior", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "alternatives": "Maquina, apoyo estable, variante sencilla" },
+        { "name": "Extension de cadera o espalda baja opcional", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "4", "rest": "2 min", "alternatives": "Puente, extension de cadera, variante sin carga", "optional": true, "lumbar": true, "note": "Probar con resistencia minima. No hacerla con la espalda fatigada o si empeora la molestia." },
+        { "name": "Core", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "alternatives": "Opcion estable y sin dolor", "optional": true, "lumbar": true }
+      ]
+    }
+  ]
+}
