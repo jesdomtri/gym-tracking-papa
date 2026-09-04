@@ -14,37 +14,37 @@
     {
       "id": "push",
       "label": "Lunes",
-      "name": "PUSH",
+      "name": "EMPUJE",
       "focus": "Empuje horizontal, empuje vertical y complementos",
       "exercises": [
-        { "name": "Empuje horizontal", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Maquina, press con mancuernas, variante con apoyo", "note": "Espalda apoyada cuando sea posible. No arquear la zona lumbar." },
-        { "name": "Empuje vertical", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Maquina, mancuernas sentado, recorrido parcial comodo", "note": "Mantener el tronco estable y no compensar con la espalda." },
-        { "name": "Complemento de pecho u hombro", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "3", "rest": "90-120 s", "alternatives": "Apertura, elevacion lateral, otro empuje ligero", "optional": true },
-        { "name": "Triceps", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "alternatives": "Polea, maquina, mancuerna sencilla", "optional": true }
+        { "name": "Empuje horizontal", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Press de pecho en máquina, press con mancuernas sentado, máquina guiada", "note": "Espalda apoyada cuando sea posible. No arquear la zona lumbar." },
+        { "name": "Empuje vertical", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Press de hombros en máquina, mancuernas sentado con respaldo, polea estable", "note": "Mantener el tronco estable y no compensar con la espalda." },
+        { "name": "Complemento de pecho u hombro", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "3", "rest": "90-120 s", "alternatives": "Aperturas en máquina, elevaciones laterales, press de pecho ligero" },
+        { "name": "Tríceps", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "alternatives": "Extensión de tríceps en polea, máquina de tríceps, mancuerna" }
       ]
     },
     {
       "id": "pull",
       "label": "Martes",
-      "name": "PULL",
+      "name": "TIRÓN",
       "focus": "Tirones vertical y horizontal, espalda alta y brazos",
       "exercises": [
-        { "name": "Tiron vertical", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Polea, maquina, variante con apoyo", "note": "No usar impulso." },
-        { "name": "Tiron horizontal", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Remo sentado, maquina con pecho apoyado, polea", "note": "Priorizar apoyo del pecho si reduce el esfuerzo lumbar." },
-        { "name": "Deltoides posterior/escapula", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Apertura inversa, polea, maquina", "optional": true },
-        { "name": "Biceps", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "alternatives": "Mancuernas, polea, maquina", "optional": true }
+        { "name": "Tirón vertical", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Jalón en polea, máquina de jalón, máquina convergente", "note": "No usar impulso." },
+        { "name": "Tirón horizontal", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Remo sentado, máquina de remo con pecho apoyado, remo en polea", "note": "Priorizar apoyo del pecho si reduce el esfuerzo lumbar." },
+        { "name": "Deltoides posterior/escápula", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Apertura inversa en máquina, apertura inversa en polea, máquina de hombro posterior" },
+        { "name": "Bíceps", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "alternatives": "Curl con mancuernas, curl en polea, máquina de bíceps" }
       ]
     },
     {
       "id": "legs-a",
       "label": "Miercoles",
-      "name": "LEGS A",
-      "focus": "Dominante de rodilla, cadera, gemelos y core",
+      "name": "PIERNAS A",
+      "focus": "Dominante de rodilla, cadera, gemelos y abdomen",
       "exercises": [
-        { "name": "Dominante de rodilla", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Prensa, sentarse-levantarse, maquina guiada" },
-        { "name": "Extension de cadera", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "alternatives": "Puente sencillo, maquina, bisagra ligera guiada", "note": "La espalda baja no debe ser el limitante principal." },
-        { "name": "Flexion de rodilla o gemelos", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Maquina, variante de pie o sentado", "optional": true },
-        { "name": "Core anti-movimiento", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "alternatives": "Prensa de manos, carga transportada ligera, maquina estable", "optional": true }
+        { "name": "Dominante de rodilla", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Sentadilla pendular, prensa de piernas, sentarse y levantarse de un banco" },
+        { "name": "Extensión de cadera", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "alternatives": "Puente de glúteos, máquina de extensión de cadera, bisagra guiada ligera", "note": "La espalda baja no debe ser el limitante principal." },
+        { "name": "Flexión de rodilla o gemelos", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Curl de piernas sentado o tumbado, máquina de gemelos sentado o de pie" },
+        { "name": "Abdomen y estabilidad", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "alternatives": "Presión de manos, paseo con una carga ligera, máquina de abdomen estable" }
       ]
     },
     {
@@ -53,22 +53,22 @@
       "name": "TORSO",
       "focus": "Empuje y tiron equilibrados",
       "exercises": [
-        { "name": "Empuje horizontal", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Maquina, mancuernas, variante con apoyo" },
-        { "name": "Tiron horizontal", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Remo con pecho apoyado, maquina, polea" },
-        { "name": "Tiron vertical o empuje vertical", "sets": 2, "reps": "8-12", "rir": "3", "rest": "2 min", "alternatives": "Elegir el patron menos trabajado y mejor tolerado" },
-        { "name": "Complemento opcional", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Hombro posterior, brazos o pecho ligero", "optional": true }
+        { "name": "Empuje horizontal", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Press de pecho en máquina, press con mancuernas sentado, máquina guiada" },
+        { "name": "Tirón horizontal", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Remo con pecho apoyado, máquina de remo, remo en polea" },
+        { "name": "Tirón vertical o empuje vertical", "sets": 2, "reps": "8-12", "rir": "3", "rest": "2 min", "alternatives": "Jalón en polea, máquina de espalda, press de hombros en máquina" },
+        { "name": "Complemento de hombro, brazos o pecho", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Apertura inversa, curl de bíceps, extensión de tríceps o press ligero" }
       ]
     },
     {
       "id": "legs-b",
       "label": "Viernes",
-      "name": "LEGS B",
-      "focus": "Rodilla o cadera, cadena posterior prudente y core",
+      "name": "PIERNAS B",
+      "focus": "Rodilla o cadera, cadena posterior prudente y abdomen",
       "exercises": [
-        { "name": "Dominante de rodilla o cadera", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3-4", "rest": "2-3 min", "alternatives": "Elegir el patron que este mas recuperado" },
-        { "name": "Flexion de rodilla/cadena posterior", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "alternatives": "Maquina, apoyo estable, variante sencilla" },
-        { "name": "Extension de cadera o espalda baja opcional", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "4", "rest": "2 min", "alternatives": "Puente, extension de cadera, variante sin carga", "optional": true, "lumbar": true, "note": "Probar con resistencia minima. No hacerla con la espalda fatigada o si empeora la molestia." },
-        { "name": "Core", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "alternatives": "Opcion estable y sin dolor", "optional": true, "lumbar": true }
+        { "name": "Dominante de rodilla o cadera", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3-4", "rest": "2-3 min", "alternatives": "Sentadilla pendular o prensa de piernas si trabajan más los cuádriceps; puente o máquina de cadera si trabajan más los glúteos" },
+        { "name": "Flexión de rodilla/cadena posterior", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "alternatives": "Curl de piernas sentado, curl tumbado o máquina con apoyo estable" },
+        { "name": "Extensión de cadera o espalda baja", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "4", "rest": "2 min", "alternatives": "Puente de glúteos, máquina de extensión de cadera, banco de extensiones sin carga", "lumbar": true, "note": "Probar con resistencia mínima. No hacerla con la espalda fatigada o si empeora la molestia." },
+        { "name": "Abdomen y estabilidad", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "alternatives": "Presión de manos, paseo con carga ligera o máquina de abdomen estable", "lumbar": true }
       ]
     }
   ]

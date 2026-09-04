@@ -16,4 +16,4 @@ Alternar empuje y tiron si ayuda a gestionar el tiempo, sin convertirlo en un ci
 
 ## Cuando usar o cambiar
 
-Elegir dos patrones principales y un tercero segun recuperacion y preferencias. El complemento es opcional. Sustituir una opcion si causa molestias repetidas, requiere impulso o resulta claramente menos comoda que otra del mismo patron. Nivel inicial: bajo a moderado.
+Elegir dos patrones principales y un tercero segun recuperacion y preferencias. El complemento se puede omitir. Sustituir una opcion si causa molestias repetidas, requiere impulso o resulta claramente menos comoda que otra del mismo patron. Nivel inicial: bajo a moderado.

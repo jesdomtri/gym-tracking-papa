@@ -75,12 +75,21 @@ function storageKey(index) {
 }
 
 function blankRecord(exercise) {
-  return { weight: "", reps: Array(exercise.sets).fill(""), rir: "", feeling: "", discomfort: "", lumbarPain: "" };
+  return { weights: Array(exercise.sets).fill(""), reps: Array(exercise.sets).fill(""), rir: "", feeling: "", discomfort: "", lumbarPain: "" };
 }
 
 function loadDay(index) {
   const saved = JSON.parse(localStorage.getItem(storageKey(index)) || "null");
-  state.records = Object.fromEntries(state.plan.days[index].exercises.map((exercise, i) => [i, { ...blankRecord(exercise), ...(saved?.records?.[i] || {}), reps: Array.from({ length: exercise.sets }, (_, setIndex) => saved?.records?.[i]?.reps?.[setIndex] || "") }]));
+  state.records = Object.fromEntries(state.plan.days[index].exercises.map((exercise, i) => {
+    const savedRecord = saved?.records?.[i] || {};
+    const oldWeight = savedRecord.weight || "";
+    return [i, {
+      ...blankRecord(exercise),
+      ...savedRecord,
+      weights: Array.from({ length: exercise.sets }, (_, setIndex) => savedRecord.weights?.[setIndex] ?? oldWeight),
+      reps: Array.from({ length: exercise.sets }, (_, setIndex) => savedRecord.reps?.[setIndex] || "")
+    }];
+  }));
   state.session = saved?.session || { status: "normal", painStart: "", painEnd: "", painNext: "", comments: "" };
   state.warmup = saved?.warmup || {};
   state.completed = Boolean(saved?.completed);
@@ -89,7 +98,7 @@ function loadDay(index) {
 function saveDay() {
   if (state.selectedIndex < 0) return;
   localStorage.setItem(storageKey(state.selectedIndex), JSON.stringify({
-    version: 1,
+    version: 2,
     weekStart: dateKey(),
     day: state.plan.days[state.selectedIndex].id,
     records: state.records,
@@ -171,15 +180,15 @@ function renderSessionFields() {
 function renderExercises(day) {
   $("#exercise-list").innerHTML = day.exercises.map((exercise, index) => {
     const record = state.records[index] || blankRecord(exercise);
-    const sets = Array.from({ length: exercise.sets }, (_, setIndex) => `<label>Serie ${setIndex + 1}<input type="number" min="0" inputmode="numeric" placeholder="-" data-exercise="${index}" data-field="reps" data-set="${setIndex}" value="${escapeHTML(record.reps[setIndex] || "")}"></label>`).join("");
+    const sets = Array.from({ length: exercise.sets }, (_, setIndex) => `<div class="set-fields"><span class="set-label">Serie ${setIndex + 1}</span><label>Peso <span class="unit">kg o unidad</span><input type="text" inputmode="decimal" placeholder="-" data-exercise="${index}" data-field="weights" data-set="${setIndex}" value="${escapeHTML(record.weights?.[setIndex] || "")}"></label><label>Repeticiones<input type="number" min="0" inputmode="numeric" placeholder="-" data-exercise="${index}" data-field="reps" data-set="${setIndex}" value="${escapeHTML(record.reps[setIndex] || "")}"></label></div>`).join("");
     const lumbar = exercise.lumbar ? `<label class="lumbar-field">Dolor lumbar durante <span class="unit">0-10</span><select data-exercise="${index}" data-field="lumbarPain"><option value="">-</option>${painOptions(record.lumbarPain)}</select></label>` : "";
     return `<article class="exercise-card">
-      <div class="exercise-title"><span class="exercise-number">${index + 1}.</span><h3>${exercise.name}</h3>${exercise.optional ? '<span class="optional-tag">Opcional</span>' : ""}</div>
-      <p class="programmed"><span>PROGRAMADO</span><span>${exercise.setsLabel || exercise.sets} series × ${exercise.reps} rep</span><span>RIR ${exercise.rir}</span><span>Descanso ${exercise.rest}</span></p>
-      <p class="alternatives"><strong>Alternativas:</strong> ${exercise.alternatives}</p>
+      <div class="exercise-title"><span class="exercise-number">${index + 1}.</span><h3>${exercise.name}</h3></div>
+      <p class="exercise-target"><span>Objetivo: ${exercise.setsLabel || exercise.sets} series × ${exercise.reps} rep</span><span>RIR ${exercise.rir}</span><span>Descanso ${exercise.rest}</span></p>
+      <p class="alternatives"><strong>Posibles ejercicios/máquinas:</strong> ${exercise.alternatives}</p>
       ${exercise.note ? `<p class="exercise-note">${exercise.note}</p>` : ""}
       <p class="actual-label">REALIZADO</p>
-      <div class="exercise-main-fields"><label>Peso utilizado <span class="unit">kg o unidad</span><input type="text" inputmode="decimal" placeholder="Sin peso" data-exercise="${index}" data-field="weight" value="${escapeHTML(record.weight || "")}"></label><label>RIR real <span class="unit">repeticiones en reserva</span><select data-exercise="${index}" data-field="rir"><option value="">-</option>${rirOptions(record.rir)}</select></label></div>
+      <div class="exercise-main-fields"><label>RIR real <span class="unit">repeticiones en reserva</span><select data-exercise="${index}" data-field="rir"><option value="">-</option>${rirOptions(record.rir)}</select></label></div>
       <div class="set-grid">${sets}</div>
       <label>Sensaciones<textarea rows="2" data-exercise="${index}" data-field="feeling" placeholder="Cómodo, difícil, buena máquina...">${escapeHTML(record.feeling || "")}</textarea></label>
       <div class="quick-buttons">${["👍 Bien", "😐 Normal", "👎 Mal"].map((text) => `<button type="button" class="quick-button${record.feeling === text.slice(2) ? " selected" : ""}" data-quick="${index}" data-value="${text.slice(2)}">${text}</button>`).join("")}</div>
@@ -203,6 +212,7 @@ function handleInput(event) {
   const record = state.records[index] || blankRecord(state.plan.days[state.selectedIndex].exercises[index]);
   const fieldName = event.target.dataset.field;
   if (fieldName === "reps") record.reps[Number(event.target.dataset.set)] = event.target.value;
+  else if (fieldName === "weights") record.weights[Number(event.target.dataset.set)] = event.target.value;
   else record[fieldName] = event.target.value;
   state.records[index] = record;
   saveDay();
@@ -221,15 +231,19 @@ function handleQuickButton(event) {
 }
 
 function sessionSummary() {
-  if (state.selectedIndex < 0) return "Hoy no hay entrenamiento programado.";
+  if (state.selectedIndex < 0) return "Hoy no hay entrenamiento.";
   const day = state.plan.days[state.selectedIndex];
   const date = formatDate(new Date());
   const lines = [`${day.name} - ${date}`, `${day.label} | ${day.focus}`, ""];
   day.exercises.forEach((exercise, index) => {
     const record = state.records[index] || blankRecord(exercise);
     lines.push(`${index + 1}. ${exercise.name}`);
-    lines.push(`Programado: ${exercise.setsLabel || exercise.sets} series x ${exercise.reps}, RIR ${exercise.rir}, descanso ${exercise.rest}`);
-    lines.push(`Realizado: ${record.weight ? `${record.weight} kg/unidad` : "sin peso indicado"} | ${record.reps.filter(Boolean).join(" / ") || "sin repeticiones"} | RIR real ${record.rir || "-"}`);
+    lines.push(`Objetivo: ${exercise.setsLabel || exercise.sets} series x ${exercise.reps}, RIR ${exercise.rir}, descanso ${exercise.rest}`);
+    const series = record.reps.map((reps, setIndex) => {
+      const weight = record.weights?.[setIndex] || "sin peso";
+      return reps || record.weights?.[setIndex] ? `S${setIndex + 1}: ${weight} kg/unidad x ${reps || "-"}` : "";
+    }).filter(Boolean).join(" | ");
+    lines.push(`Realizado: ${series || "sin series registradas"} | RIR real ${record.rir || "-"}`);
     lines.push(`Sensaciones: ${record.feeling || "-"} | Molestias: ${record.discomfort || "-"}`);
     if (exercise.lumbar) lines.push(`Dolor lumbar durante: ${record.lumbarPain === "" ? "-" : `${record.lumbarPain}/10`}`);
     lines.push("");

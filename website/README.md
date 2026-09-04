@@ -16,7 +16,7 @@ Abrir `http://localhost:8000`. No se recomienda abrir `index.html` con doble cli
 
 1. La pantalla muestra automaticamente el dia actual de lunes a viernes.
 2. Antes de los ejercicios aparece el **calentamiento obligatorio** en tres pasos: cardio, movimientos generales y series de aproximacion. La rutina se desbloquea al completar los tres pasos.
-3. En cada tarjeta se ve primero **lo programado** y despues se anotan los datos **realizados**.
+3. En cada tarjeta se ve el objetivo del ejercicio y despues se anotan los datos **realizados**.
 4. Los campos y los pasos del calentamiento se guardan automaticamente en `localStorage`.
 5. `Terminar entrenamiento` marca la sesion como completada sin borrar datos.
 6. El resumen aparece debajo y puede copiarse, compartirse, enviarse por WhatsApp o email.
@@ -39,11 +39,11 @@ Escribir el numero de WhatsApp con prefijo internacional, solo digitos, sin `+`,
 
 ## Sincronizar el plan
 
-`plan_activo.md` y la seccion de calentamiento de `gimnasio_padre/README.md` siguen siendo las fuentes de verdad. Como una web estatica no puede convertir Markdown de forma fiable en todos los navegadores, `plan.json` es una copia estructurada que debe actualizarse manualmente cuando cambien el plan o el calentamiento. Solo debe contener los patrones, series, repeticiones, RIR, descansos, alternativas, notas y pasos de calentamiento de las fuentes. No poner pesos reales en `plan.json`.
+`plan_activo.md` y la seccion de calentamiento de `gimnasio_padre/README.md` siguen siendo las fuentes de verdad. Como una web estatica no puede convertir Markdown de forma fiable en todos los navegadores, `plan.json` es una copia estructurada que debe actualizarse manualmente cuando cambien el plan o el calentamiento. Solo debe contener los patrones, series, repeticiones, RIR, descansos, posibles ejercicios o maquinas, notas y pasos de calentamiento de las fuentes. No poner pesos reales en `plan.json`.
 
 La plantilla `semana_actual.md` y la carpeta `historial/` siguen siendo el registro oficial de archivos. La web no modifica esos archivos: sus datos locales se pueden exportar como copia JSON y trasladar manualmente al diario.
 
-Cuando el plan indica un rango de series, por ejemplo `2-3`, la web muestra ese rango y prepara el numero maximo de campos. La ultima serie se puede dejar vacia si ese dia se realizan menos series.
+Cuando el plan indica un rango de series, por ejemplo `2-3`, la web muestra ese rango y prepara el numero maximo de campos. Cada serie tiene su propio campo de peso y repeticiones, y la ultima serie se puede dejar vacia si ese dia se realizan menos series.
 
 ## Borrar y restaurar
 

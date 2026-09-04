@@ -1,4 +1,4 @@
-# Biblioteca: core
+# Biblioteca: abdomen y estabilidad
 
 **Objetivo:** mejorar la capacidad de mantener el tronco estable mientras brazos y piernas producen fuerza.
 
@@ -15,4 +15,4 @@ Respirar sin bloquearse, mantener una posicion comoda y parar antes de perder co
 
 ## Precauciones
 
-No hace falta entrenar el core hasta temblar. Evitar cualquier opcion que fuerce la espalda o empeore los sintomas. Nivel inicial: bajo.
+No hace falta entrenar el abdomen hasta temblar. Evitar cualquier opcion que fuerce la espalda o empeore los sintomas. Nivel inicial: bajo.

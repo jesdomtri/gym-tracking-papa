@@ -61,15 +61,16 @@ input:focus, select:focus, textarea:focus, button:focus-visible { outline: 3px s
 .exercise-title { display: flex; gap: 10px; align-items: baseline; }
 .exercise-number { color: var(--orange); font-weight: 700; }
 .exercise-title h3 { margin-bottom: 5px; font-size: 1.25rem; }
-.programmed { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 12px; color: var(--green); font-weight: 700; }
-.programmed span { white-space: nowrap; }
+.exercise-target { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 12px; color: var(--green); font-weight: 700; }
+.exercise-target span { white-space: nowrap; }
 .exercise-note, .alternatives { margin: 7px 0; color: var(--muted); font-size: .9rem; }
 .alternatives strong { color: var(--ink); }
-.optional-tag { border: 1px solid #e3b07e; border-radius: 20px; color: #8d4817; padding: 2px 8px; font-size: .72rem; font-weight: 700; }
 .actual-label { margin: 17px 0 8px; font-size: .9rem; color: var(--orange); font-weight: 700; letter-spacing: .06em; }
 .exercise-main-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.set-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.set-grid label { font-size: .85rem; }
+.set-grid { display: grid; gap: 8px; }
+.set-fields { display: grid; grid-template-columns: 84px 1fr 1fr; gap: 8px; align-items: end; }
+.set-label { padding-bottom: 13px; color: var(--muted); font-size: .85rem; font-weight: 700; }
+.set-fields label { font-size: .85rem; }
 .quick-buttons { display: flex; gap: 7px; margin-top: 7px; }
 .quick-button { flex: 1; min-height: 40px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); }
 .quick-button.selected { background: var(--green-light); border-color: var(--green); }
@@ -101,6 +102,6 @@ footer { padding: 0 14px 25px; color: var(--muted); text-align: center; }
   .session-meta strong { margin-right: 12px; }
   .session-fields, .exercise-main-fields { grid-template-columns: 1fr; }
   .wide { grid-column: auto; }
-  .set-grid { grid-template-columns: repeat(2, 1fr); }
+  .set-fields { grid-template-columns: 64px 1fr 1fr; }
   #session-section, #workout-section, .summary-section { padding: 17px; }
 }

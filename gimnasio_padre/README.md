@@ -12,12 +12,12 @@ La regla de oro es equilibrar **fuerza, seguridad, progresion, recuperacion y ad
 
 ## 2. Decisiones importantes
 
-- Se conserva la division `PUSH -> PULL -> LEGS A -> TORSO -> LEGS B` porque permite repartir el volumen y respeta la motivacion de acudir cinco dias.
+- Se conserva la division `EMPUJE -> TIRON -> PIERNAS A -> TORSO -> PIERNAS B` porque permite repartir el volumen y respeta la motivacion de acudir cinco dias.
 - Cinco visitas no significan cinco sesiones duras. Cada dia tiene poco volumen y puede convertirse en una version minima o en descanso si la jornada laboral lo exige.
 - La primera semana es de exploracion: no se intenta demostrar fuerza ni establecer cargas definitivas.
-- El plan usa patrones de movimiento y alternativas, no maquinas inventadas. La comodidad, la tecnica y la tolerancia deciden la opcion final.
+- El plan usa patrones de movimiento y posibles ejercicios o maquinas, no maquinas inventadas. La comodidad, la tecnica y la tolerancia deciden la opcion final.
 - No se programa el fallo muscular ni se usan rangos de fuerza extrema al principio. La fuerza se construye con repeticiones tecnicamente solidas y margen.
-- Las extensiones de cadera o espalda baja son herramientas opcionales. Se prueban con poca exigencia, sin buscar fatigar la zona lumbar, y se revisa la respuesta ese dia y al siguiente.
+- Las extensiones de cadera o espalda baja se prueban con poca exigencia, sin buscar fatigar la zona lumbar, y se revisa la respuesta ese dia y al siguiente.
 
 ## 3. Como usar los archivos
 
@@ -27,17 +27,17 @@ La regla de oro es equilibrar **fuerza, seguridad, progresion, recuperacion y ad
 4. Se limpia `semana_actual.md` para la siguiente semana, conservando la misma plantilla.
 5. Cada 4-6 semanas, o antes si algo cambia, se hace una revision en [`evaluaciones/`](evaluaciones/README.md) y se actualiza el plan activo.
 
-La biblioteca de alternativas esta en [`ejercicios/`](ejercicios/). Sus documentos se consultan cuando haya que elegir o sustituir un ejercicio.
+La biblioteca de posibles ejercicios esta en [`ejercicios/`](ejercicios/). Sus documentos se consultan cuando haya que elegir o sustituir un ejercicio.
 
 ## 4. Division semanal
 
 La secuencia prevista es:
 
-- **Dia 1 - Push:** empuje horizontal, empuje vertical y un complemento sencillo.
-- **Dia 2 - Pull:** tiron vertical, tiron horizontal y trabajo ligero de espalda alta/brazos.
-- **Dia 3 - Legs A:** dominante de rodilla, cadena posterior moderada, gemelos y core.
+- **Dia 1 - Empuje:** empuje horizontal, empuje vertical y un complemento sencillo.
+- **Dia 2 - Tiron:** tiron vertical, tiron horizontal y trabajo ligero de espalda alta/brazos.
+- **Dia 3 - Piernas A:** dominante de rodilla, cadena posterior moderada, gemelos y abdomen.
 - **Dia 4 - Torso:** empuje y tiron equilibrados, con volumen contenido.
-- **Dia 5 - Legs B:** dominante de rodilla o cadera segun la tolerancia, cadena posterior prudente y core.
+- **Dia 5 - Piernas B:** dominante de rodilla o cadera segun la tolerancia, cadena posterior prudente y abdomen.
 
 El orden puede desplazarse. No se compensa una sesion perdida acumulando volumen. El fin de semana solo permite paseo, cardio suave, recuperacion activa o una sesion muy ligera si hay ganas y buena recuperacion; no es un sexto dia obligatorio de fuerza.
 

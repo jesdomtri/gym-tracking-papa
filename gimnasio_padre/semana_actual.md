@@ -27,7 +27,7 @@ N = normal, C = cansado, M = muy cansado/con molestias.
 |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |
 
-## Dia 1 - Push
+## Dia 1 - Empuje
 
 **Estado del dia:** NORMAL / CANSADO / MUY CANSADO  
 **Calentamiento y aproximaciones:** ____  
@@ -36,7 +36,7 @@ N = normal, C = cansado, M = muy cansado/con molestias.
 **Respuesta al dia siguiente:** ____  
 **Trabajo y sueno recientes:** ____
 
-| Ejercicio/patron y opcion usada | Peso | S1 | S2 | S3 | RIR estimado | Descanso | Tecnica/sensacion | Molestias |
+| Ejercicio/patron y opcion usada | Peso S1 | Reps S1 | Peso S2 | Reps S2 | Peso S3 | Reps S3 | RIR estimado | Descanso | Tecnica/sensacion | Molestias |
 |---|---|---:|---:|---:|---:|---|---|---|
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |
@@ -45,24 +45,24 @@ N = normal, C = cansado, M = muy cansado/con molestias.
 
 **Comentarios:** ____
 
-## Dia 2 - Pull
+## Dia 2 - Tiron
 
 **Estado:** ____  **Tiempo:** ____ min  **Dolor antes/durante/despues:** ____ / ____ / ____  **Dia siguiente:** ____  
 **Trabajo y sueno:** ____
 
-| Ejercicio/patron y opcion usada | Peso | S1 | S2 | S3 | RIR | Descanso | Tecnica/sensacion | Molestias |
+| Ejercicio/patron y opcion usada | Peso S1 | Reps S1 | Peso S2 | Reps S2 | Peso S3 | Reps S3 | RIR | Descanso | Tecnica/sensacion | Molestias |
 |---|---|---:|---:|---:|---:|---|---|---|
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |
 
-## Dia 3 - Legs A
+## Dia 3 - Piernas A
 
 **Estado:** ____  **Tiempo:** ____ min  **Dolor antes/durante/despues:** ____ / ____ / ____  **Dia siguiente:** ____  
 **Trabajo y sueno:** ____
 
-| Ejercicio/patron y opcion usada | Peso | S1 | S2 | S3 | RIR | Descanso | Tecnica/sensacion | Molestias |
+| Ejercicio/patron y opcion usada | Peso S1 | Reps S1 | Peso S2 | Reps S2 | Peso S3 | Reps S3 | RIR | Descanso | Tecnica/sensacion | Molestias |
 |---|---|---:|---:|---:|---:|---|---|---|
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |
@@ -74,19 +74,19 @@ N = normal, C = cansado, M = muy cansado/con molestias.
 **Estado:** ____  **Tiempo:** ____ min  **Dolor antes/durante/despues:** ____ / ____ / ____  **Dia siguiente:** ____  
 **Trabajo y sueno:** ____
 
-| Ejercicio/patron y opcion usada | Peso | S1 | S2 | S3 | RIR | Descanso | Tecnica/sensacion | Molestias |
+| Ejercicio/patron y opcion usada | Peso S1 | Reps S1 | Peso S2 | Reps S2 | Peso S3 | Reps S3 | RIR | Descanso | Tecnica/sensacion | Molestias |
 |---|---|---:|---:|---:|---:|---|---|---|
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |
 
-## Dia 5 - Legs B
+## Dia 5 - Piernas B
 
 **Estado:** ____  **Tiempo:** ____ min  **Dolor antes/durante/despues:** ____ / ____ / ____  **Dia siguiente:** ____  
 **Trabajo y sueno:** ____
 
-| Ejercicio/patron y opcion usada | Peso | S1 | S2 | S3 | RIR | Descanso | Tecnica/sensacion | Molestias |
+| Ejercicio/patron y opcion usada | Peso S1 | Reps S1 | Peso S2 | Reps S2 | Peso S3 | Reps S3 | RIR | Descanso | Tecnica/sensacion | Molestias |
 |---|---|---:|---:|---:|---:|---|---|---|
 |  |  |  |  |  |  |  |  |  |
 |  |  |  |  |  |  |  |  |  |

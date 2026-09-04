@@ -1,4 +1,4 @@
-const CACHE_NAME = "entrenamiento-padre-v1";
+const CACHE_NAME = "entrenamiento-padre-v2";
 const FILES = ["./", "./index.html", "./style.css", "./app.js", "./plan.json", "./manifest.json"];
 
 self.addEventListener("install", (event) => event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES)).then(() => self.skipWaiting())));
