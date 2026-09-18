@@ -1,76 +1,80 @@
 # Plan activo
 
-**Version:** 0.1 - pendiente de personalizar tras la semana de exploracion  
-**Pesos:** se registran unicamente en `semana_actual.md`  
+**Version:** 1.0 - ejercicios y maquinas fijos
+**Pesos:** la recomendacion semanal se publica en `website/recommendation.json`; los pesos reales se registran en la web y en el historial.
 **Duracion objetivo:** 45-60 minutos por sesion
 
-Para escoger ejercicios o maquinas posibles, consultar [`ejercicios/`](ejercicios/). Para registrar la sesion, usar [`semana_actual.md`](semana_actual.md).
+La web es una aplicacion estatica. Este documento define los ejercicios, maquinas, rangos, RIR y reglas estables. La recomendacion concreta de peso, series y repeticiones se revisa manualmente despues de recibir el informe del cliente y se publica por separado cada semana.
 
 ## Reglas comunes
 
-- Calentamiento general de 5-10 minutos y series de aproximacion.
-- Primeras semanas: RIR 3-4. Despues: normalmente RIR 2-3.
-- Descansar 2-3 minutos en ejercicios principales y hasta 90-120 segundos en accesorios, sin recortar descansos si perjudica la tecnica.
-- Hacer 3-4 ejercicios. En dias de trabajo duro, quitar primero accesorios y despues series.
-- Elegir una sola opcion por patron; los demas ejercicios posibles son sustituciones, no trabajo adicional.
-- Progresar solo con tecnica estable, tolerancia buena y respuesta del dia siguiente aceptable.
-- Sustituir si hay dolor repetido, incomodidad persistente o tecnica que no se puede controlar.
+- Completar el calentamiento general y las series de aproximacion antes del trabajo efectivo.
+- Usar el peso y el rango de repeticiones publicados para cada serie.
+- El cliente puede bajar o subir el peso, hacer menos o mas series y cambiar las repeticiones si su estado lo exige; debe registrar lo realizado.
+- El RIR es un limite de esfuerzo: detener la serie cuando se alcance el RIR indicado aunque no se haya llegado al maximo de repeticiones.
+- No se busca el fallo muscular. Si la tecnica se deteriora, detener la serie.
+- En dias de trabajo duro, reducir primero accesorios y despues series; no compensar una sesion perdida acumulando volumen.
+- Registrar peso, repeticiones, RIR real, sensaciones, molestias y dolor lumbar.
+- Revisar la respuesta al dia siguiente antes de publicar una subida de peso.
+- La web no diagnostica dolor. Ante dolor intenso, persistente, progresivo o sintomas neurologicos, detener la actividad y buscar valoracion profesional.
+
+## Calentamiento
+
+1. Unos 5 minutos de bicicleta, cinta o eliptica a intensidad baja o moderada.
+2. 2-3 minutos de movimientos generales sencillos.
+3. Series de aproximacion con poca carga y pocas repeticiones, sin cansarse.
 
 ## Dia 1 - Empuje
 
-| Objetivo/patron | Series | Repeticiones | RIR | Descanso | Posibles ejercicios/maquinas |
-|---|---:|---:|---:|---:|---|
-| Empuje horizontal | 2-3 | 5-8 | 3-4 | 2-3 min | Press de pecho en maquina, press con mancuernas sentado, maquina guiada |
-| Empuje vertical | 2 | 6-10 | 3 | 2 min | Press de hombros en maquina, mancuernas sentado con respaldo, polea estable |
-| Complemento de pecho u hombro | 1-2 | 8-12 | 3 | 90-120 s | Aperturas en maquina, elevaciones laterales, press de pecho ligero |
-| Triceps | 1-2 | 10-15 | 2-3 | 90 s | Extension de triceps en polea, maquina de triceps, mancuerna |
-
-Notas: espalda apoyada cuando sea posible. No compensar con arqueo lumbar ni encoger hombros. Si el dia es cansado, omitir el complemento o triceps.
+| ID | Ejercicio | Maquina | Series | Repeticiones | RIR | Descanso |
+|---|---|---|---:|---:|---:|---:|
+| `push-bench-impulse` | Press banca en maquina Impulse | Impulse | 2-3 | 5-8 | 3-4 | 2-3 min |
+| `push-shoulder-titan` | Press militar en maquina Titan | Titan | 2 | 6-10 | 3 | 2 min |
+| `push-fly` | Aperturas | Maquina de aperturas | 1-2 | 8-12 | 3 | 90-120 s |
+| `push-triceps-cable-z` | Empujon hacia abajo con polea y barra Z para triceps | Polea con barra Z | 1-2 | 10-15 | 2-3 | 90 s |
 
 ## Dia 2 - Tiron
 
-| Objetivo/patron | Series | Repeticiones | RIR | Descanso | Posibles ejercicios/maquinas |
-|---|---:|---:|---:|---:|---|
-| Tiron vertical | 2-3 | 5-8 | 3-4 | 2-3 min | Jalon en polea, maquina de jalon, maquina convergente |
-| Tiron horizontal | 2-3 | 6-10 | 3 | 2 min | Remo sentado, maquina de remo con pecho apoyado, remo en polea |
-| Deltoides posterior/escapula | 1-2 | 10-15 | 3 | 90 s | Apertura inversa en maquina, apertura inversa en polea, maquina de hombro posterior |
-| Biceps | 1-2 | 10-15 | 2-3 | 90 s | Curl con mancuernas, curl en polea, maquina de biceps |
-
-Notas: priorizar apoyo del pecho si reduce el esfuerzo lumbar. No tirar con impulso ni convertir el remo en una bisagra de cadera.
+| ID | Ejercicio | Maquina | Series | Repeticiones | RIR | Descanso |
+|---|---|---|---:|---:|---:|---:|
+| `pull-lat-flex` | Jalon al pecho en maquina Flex | Flex | 2-3 | 5-8 | 3-4 | 2-3 min |
+| `pull-row-dhz` | Remo con agarre prono en maquina Dhz | Dhz | 2-3 | 6-10 | 3 | 2 min |
+| `pull-rear-delt-impulse` | Mariposas para hombro posterior en maquina Impulse | Impulse | 1-2 | 10-15 | 3 | 90 s |
+| `pull-biceps-dhz` | Curl de biceps en maquina Dhz | Dhz | 1-2 | 10-15 | 2-3 | 90 s |
 
 ## Dia 3 - Piernas A
 
-| Objetivo/patron | Series | Repeticiones | RIR | Descanso | Posibles ejercicios/maquinas |
-|---|---:|---:|---:|---:|---|
-| Dominante de rodilla | 2-3 | 5-8 | 3-4 | 2-3 min | Sentadilla pendular, prensa de piernas, sentarse y levantarse de un banco |
-| Extension de cadera | 2 | 8-12 | 3-4 | 2 min | Puente de gluteos, maquina de extension de cadera, bisagra guiada ligera |
-| Flexion de rodilla o gemelos | 1-2 | 10-15 | 3 | 90 s | Curl de piernas sentado o tumbado, maquina de gemelos sentado o de pie |
-| Abdomen y estabilidad | 1-2 | 8-12 o 20-30 s | 3 | 60-90 s | Presion de manos, paseo con una carga ligera, maquina de abdomen estable |
-
-Notas: elegir solo un trabajo de cadena posterior. La espalda baja no debe ser el limitante principal. Omitir gemelos o abdomen si la jornada ya cargo mucho las piernas.
+| ID | Ejercicio | Maquina | Series | Repeticiones | RIR | Descanso |
+|---|---|---|---:|---:|---:|---:|
+| `legs-a-hack-dhz` | Sentadilla jaca en maquina Dhz | Dhz | 2-3 | 5-8 | 3-4 | 2-3 min |
+| `legs-a-hip-thrust-dhz` | Hip Thrust en maquina Dhz | Dhz | 2 | 8-12 | 3-4 | 2 min |
+| `legs-a-calf` | Gemelos en maquina | Maquina de gemelos | 1-2 | 10-15 | 3 | 90 s |
+| `legs-a-hanging-ab` | Abdomen colgado de la barra | Barra | 1-2 | 8-12 o 20-30 s | 3 | 60-90 s |
 
 ## Dia 4 - Torso
 
-| Objetivo/patron | Series | Repeticiones | RIR | Descanso | Posibles ejercicios/maquinas |
-|---|---:|---:|---:|---:|---|
-| Empuje horizontal | 2 | 6-10 | 3 | 2 min | Press de pecho en maquina, press con mancuernas sentado, maquina guiada |
-| Tiron horizontal | 2 | 6-10 | 3 | 2 min | Remo con pecho apoyado, maquina de remo, remo en polea |
-| Tiron vertical o empuje vertical | 2 | 8-12 | 3 | 2 min | Jalon en polea, maquina de espalda, press de hombros en maquina |
-| Complemento de hombro, brazos o pecho | 1-2 | 10-15 | 3 | 90 s | Apertura inversa, curl de biceps, extension de triceps o press ligero |
-
-Notas: sesion equilibrada y contenida. Si hay fatiga acumulada, hacer solo los tres primeros movimientos.
+| ID | Ejercicio | Maquina | Series | Repeticiones | RIR | Descanso |
+|---|---|---|---:|---:|---:|---:|
+| `torso-incline-impulse` | Press banca inclinado en maquina Impulse | Impulse | 2 | 6-10 | 3 | 2 min |
+| `torso-row-titan` | Remo en maquina Titan | Titan | 2 | 6-10 | 3 | 2 min |
+| `torso-lateral-dhz` | Vuelos laterales en maquina Dhz | Dhz | 2 | 8-12 | 3 | 2 min |
+| `torso-overhead-triceps` | Polea sin agarre por encima de la cabeza para triceps | Polea | 1-2 | 10-15 | 3 | 90 s |
 
 ## Dia 5 - Piernas B
 
-| Objetivo/patron | Series | Repeticiones | RIR | Descanso | Posibles ejercicios/maquinas |
-|---|---:|---:|---:|---:|---|
-| Dominante de rodilla o cadera | 2-3 | 6-10 | 3-4 | 2-3 min | Sentadilla pendular o prensa si trabajan mas los cuadriceps; puente o maquina de cadera si trabajan mas los gluteos |
-| Flexion de rodilla/cadena posterior | 2 | 8-12 | 3-4 | 2 min | Curl de piernas sentado, curl tumbado o maquina con apoyo estable |
-| Extension de cadera o espalda baja | 1-2 | 8-12 | 4 | 2 min | Puente de gluteos, maquina de extension de cadera, banco de extensiones sin carga |
-| Abdomen y estabilidad | 1-2 | 8-12 o 20-30 s | 3 | 60-90 s | Presion de manos, paseo con carga ligera o maquina de abdomen estable |
+| ID | Ejercicio | Maquina | Series | Repeticiones | RIR | Descanso |
+|---|---|---|---:|---:|---:|---:|
+| `legs-b-press-dhz` | Prensa Dhz | Dhz | 2-3 | 6-10 | 3-4 | 2-3 min |
+| `legs-b-leg-curl-impulse` | Curl femoral en maquina Impulse | Impulse | 2 | 8-12 | 3-4 | 2 min |
+| `legs-b-back-extension-dhz` | Extension lumbar en maquina Dhz | Dhz | 1-2 | 8-12 | 4 | 2 min |
+| `legs-b-pallof` | Pallof Press (Abdomen) | Polea | 1-2 | 8-12 o 20-30 s | 3 | 60-90 s |
 
-Notas: la extension lumbar/cadera solo se prueba cuando la tecnica y la tolerancia son buenas. Empezar sin carga o con la resistencia minima disponible. No hacerla si la espalda esta fatigada por el trabajo o si empeora la molestia.
+## Publicacion semanal
 
-## Sesion minima y fin de semana
+1. Recibir el resumen del cliente por WhatsApp.
+2. Revisar peso, repeticiones, RIR real, sensaciones, molestias y respuesta posterior.
+3. Actualizar manualmente `website/recommendation.json` con la semana siguiente.
+4. Mantener `website/plan.json` sin pesos reales: solo cambia si cambia el ejercicio fijo, la maquina o las reglas.
+5. Incrementar la version de cache del service worker al publicar cambios web.
 
-La sesion minima es calentamiento, series de aproximacion y los dos primeros movimientos tolerables con una serie menos si hace falta. El fin de semana no añade volumen de fuerza por defecto: se prefiere paseo, cardio suave o recuperacion activa.
+La progresion automatica no forma parte de esta version. La recomendacion la valida y publica el entrenador.

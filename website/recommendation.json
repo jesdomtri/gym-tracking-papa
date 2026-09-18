@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "weekStart": "2026-09-21",
+  "title": "Recomendación semanal",
+  "source": "Informe WhatsApp del cliente del 14/09/2026 al 18/09/2026",
+  "days": {
+    "push": {
+      "exercises": {
+        "push-bench-impulse": { "series": [{ "weight": "66", "repsMin": 5, "repsMax": 8, "rir": "3-4" }, { "weight": "66", "repsMin": 5, "repsMax": 8, "rir": "3-4" }, { "weight": "66", "repsMin": 5, "repsMax": 8, "rir": "3-4" }] },
+        "push-shoulder-titan": { "series": [{ "weight": "20", "repsMin": 6, "repsMax": 10, "rir": "3" }, { "weight": "20", "repsMin": 6, "repsMax": 10, "rir": "3" }] },
+        "push-fly": { "series": [{ "weight": "25", "repsMin": 8, "repsMax": 12, "rir": "3" }, { "weight": "25", "repsMin": 8, "repsMax": 12, "rir": "3" }] },
+        "push-triceps-cable-z": { "series": [{ "weight": "15", "repsMin": 10, "repsMax": 15, "rir": "2-3" }, { "weight": "15", "repsMin": 10, "repsMax": 15, "rir": "2-3" }] }
+      }
+    },
+    "pull": {
+      "exercises": {
+        "pull-lat-flex": { "series": [{ "weight": "35", "repsMin": 5, "repsMax": 8, "rir": "3-4" }, { "weight": "35", "repsMin": 5, "repsMax": 8, "rir": "3-4" }, { "weight": "35", "repsMin": 5, "repsMax": 8, "rir": "3-4" }] },
+        "pull-row-dhz": { "series": [{ "weight": "40", "repsMin": 6, "repsMax": 10, "rir": "3" }, { "weight": "40", "repsMin": 6, "repsMax": 10, "rir": "3" }, { "weight": "40", "repsMin": 6, "repsMax": 10, "rir": "3" }] },
+        "pull-rear-delt-impulse": { "series": [{ "weight": "32", "repsMin": 10, "repsMax": 15, "rir": "3" }, { "weight": "32", "repsMin": 10, "repsMax": 15, "rir": "3" }] },
+        "pull-biceps-dhz": { "series": [{ "weight": "16", "repsMin": 10, "repsMax": 15, "rir": "2-3" }, { "weight": "16", "repsMin": 10, "repsMax": 15, "rir": "2-3" }] }
+      }
+    },
+    "legs-a": {
+      "exercises": {
+        "legs-a-hack-dhz": { "series": [{ "weight": "40", "repsMin": 5, "repsMax": 8, "rir": "3-4" }, { "weight": "40", "repsMin": 5, "repsMax": 8, "rir": "3-4" }, { "weight": "40", "repsMin": 5, "repsMax": 8, "rir": "3-4" }] },
+        "legs-a-hip-thrust-dhz": { "series": [{ "weight": "40", "repsMin": 8, "repsMax": 12, "rir": "3-4" }, { "weight": "40", "repsMin": 8, "repsMax": 12, "rir": "3-4" }] },
+        "legs-a-calf": { "series": [{ "weight": "50", "repsMin": 10, "repsMax": 15, "rir": "3" }, { "weight": "50", "repsMin": 10, "repsMax": 15, "rir": "3" }] },
+        "legs-a-hanging-ab": { "series": [{ "weight": "96", "repsMin": 8, "repsMax": 12, "rir": "3" }, { "weight": "96", "repsMin": 8, "repsMax": 12, "rir": "3" }] }
+      }
+    },
+    "torso": {
+      "exercises": {
+        "torso-incline-impulse": { "series": [{ "weight": "38", "repsMin": 6, "repsMax": 10, "rir": "3" }, { "weight": "38", "repsMin": 6, "repsMax": 10, "rir": "3" }] },
+        "torso-row-titan": { "series": [{ "weight": "50", "repsMin": 6, "repsMax": 10, "rir": "3" }, { "weight": "50", "repsMin": 6, "repsMax": 10, "rir": "3" }] },
+        "torso-lateral-dhz": { "series": [{ "weight": "9", "repsMin": 8, "repsMax": 12, "rir": "3" }, { "weight": "9", "repsMin": 8, "repsMax": 12, "rir": "3" }] },
+        "torso-overhead-triceps": { "series": [{ "weight": "14", "repsMin": 10, "repsMax": 15, "rir": "3" }, { "weight": "14", "repsMin": 10, "repsMax": 15, "rir": "3" }] }
+      }
+    },
+    "legs-b": {
+      "exercises": {
+        "legs-b-press-dhz": { "series": [{ "weight": "120", "repsMin": 6, "repsMax": 10, "rir": "3-4" }, { "weight": "120", "repsMin": 6, "repsMax": 10, "rir": "3-4" }, { "weight": "120", "repsMin": 6, "repsMax": 10, "rir": "3-4" }] },
+        "legs-b-leg-curl-impulse": { "series": [{ "weight": "32", "repsMin": 8, "repsMax": 12, "rir": "3-4" }, { "weight": "32", "repsMin": 8, "repsMax": 12, "rir": "3-4" }] },
+        "legs-b-back-extension-dhz": { "series": [{ "weight": "0", "repsMin": 8, "repsMax": 12, "rir": "4" }, { "weight": "0", "repsMin": 8, "repsMax": 12, "rir": "4" }] },
+        "legs-b-pallof": { "series": [{ "weight": "18", "repsMin": 8, "repsMax": 12, "rir": "3" }, { "weight": "18", "repsMin": 8, "repsMax": 12, "rir": "3" }] }
+      }
+    }
+  }
+}

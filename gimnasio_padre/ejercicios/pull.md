@@ -1,18 +1,12 @@
-# Biblioteca: tiron
+# Ejercicios fijos: tiron
 
-**Objetivo:** desarrollar espalda, deltoides posterior y brazos sin convertir el movimiento en un esfuerzo lumbar.
+## Ejercicios
 
-## Opciones por patron
+- `pull-lat-flex`: Jalon al pecho en maquina Flex.
+- `pull-row-dhz`: Remo con agarre prono en maquina Dhz.
+- `pull-rear-delt-impulse`: Mariposas para hombro posterior en maquina Impulse.
+- `pull-biceps-dhz`: Curl de biceps en maquina Dhz.
 
-- **Tiron vertical:** polea, maquina de jalon o maquina convergente.
-- **Tiron horizontal:** remo sentado, maquina con pecho apoyado o polea estable.
-- **Espalda alta:** apertura inversa o tiron ligero hacia la cara si se entiende y tolera.
-- **Biceps:** polea, maquina o mancuernas.
+## Tecnica y registro
 
-## Ejecucion y sensaciones
-
-Mantener el tronco estable, iniciar con los brazos y acercar los codos sin tirones. Buscar trabajo en la espalda y brazos; el lumbar no debe balancear el cuerpo. El apoyo de pecho suele ser una buena primera opcion.
-
-## Precauciones y sustitucion
-
-No usar impulso ni despegar el pecho del apoyo para mover mas peso. Sustituir si el ajuste es incomodo o aparece molestia lumbar repetida. Nivel inicial: bajo a moderado.
+Mantener el tronco estable, evitar impulso y buscar el trabajo en espalda y brazos. En el remo se prioriza el apoyo del pecho. Registrar los ajustes de la maquina junto con peso previsto, peso real, repeticiones, RIR, sensaciones y molestias.

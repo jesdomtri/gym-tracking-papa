@@ -5,24 +5,62 @@ const CONFIG = {
   fatherName: ""
 };
 
-const STORAGE_PREFIX = "entrenamiento-padre-v1";
-const state = { plan: null, selectedIndex: null, records: {}, session: {}, warmup: {}, completed: false };
+const STORAGE_PREFIX = "entrenamiento-padre-v2";
+const LEGACY_PREFIX = "entrenamiento-padre-v1";
+const STORAGE_VERSION = 3;
+const state = {
+  plan: null,
+  recommendation: null,
+  selectedIndex: null,
+  records: {},
+  session: {},
+  warmup: {},
+  completed: false,
+  legacyKeys: []
+};
 const $ = (selector) => document.querySelector(selector);
 
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
   try {
-    const response = await fetch("plan.json");
-    if (!response.ok) throw new Error("No se pudo cargar plan.json");
-    state.plan = await response.json();
+    const [plan, recommendation] = await Promise.all([
+      loadJSON("plan.json"),
+      loadJSON("recommendation.json")
+    ]);
+    validatePlan(plan, recommendation);
+    state.plan = plan;
+    state.recommendation = recommendation;
+    state.legacyKeys = findLegacyKeys();
     state.selectedIndex = getInitialDay();
     bindStaticEvents();
     renderDayPicker();
     render();
+    renderLegacyNotice();
     if ("serviceWorker" in navigator) navigator.serviceWorker.register("service-worker.js").catch(() => {});
   } catch (error) {
-    $("main").innerHTML = `<section class="rest-card"><h2>No se pudo cargar el plan</h2><p>Comprueba que la web se abre desde un servidor local o web. Detalle: ${error.message}</p></section>`;
+    $("main").innerHTML = `<section class="rest-card"><h2>No se pudo cargar el plan</h2><p>Comprueba que la web se abre desde un servidor local o web. Detalle: ${escapeHTML(error.message)}</p></section>`;
+  }
+}
+
+async function loadJSON(path) {
+  const response = await fetch(path);
+  if (!response.ok) throw new Error(`No se pudo cargar ${path}`);
+  return response.json();
+}
+
+function validatePlan(plan, recommendation) {
+  if (!Array.isArray(plan.days) || plan.days.length !== 5) throw new Error("plan.json debe contener cinco dias");
+  const exercises = plan.days.flatMap((day) => day.exercises || []);
+  if (exercises.length !== 20 || new Set(exercises.map((exercise) => exercise.id)).size !== 20) {
+    throw new Error("plan.json debe contener 20 ejercicios con IDs unicos");
+  }
+  for (const day of plan.days) {
+    for (const exercise of day.exercises) {
+      if (!recommendation.days?.[day.id]?.exercises?.[exercise.id]) {
+        throw new Error(`Falta recomendacion para ${exercise.id}`);
+      }
+    }
   }
 }
 
@@ -39,7 +77,7 @@ function bindStaticEvents() {
   $("#clear-button").addEventListener("click", clearDay);
   document.addEventListener("input", handleInput);
   document.addEventListener("change", handleInput);
-  document.addEventListener("click", handleQuickButton);
+  document.addEventListener("click", handleAction);
 }
 
 function getInitialDay() {
@@ -56,7 +94,16 @@ function getMonday(date = new Date()) {
 }
 
 function dateKey(date = getMonday()) {
-  return date.toISOString().slice(0, 10);
+  return [date.getFullYear(), String(date.getMonth() + 1).padStart(2, "0"), String(date.getDate()).padStart(2, "0")].join("-");
+}
+
+function recommendationWeek() {
+  return state.recommendation?.weekStart || dateKey();
+}
+
+function parseDateKey(value) {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
 }
 
 function formatDate(date) {
@@ -64,43 +111,72 @@ function formatDate(date) {
 }
 
 function weekLabel() {
-  const monday = getMonday();
+  const monday = parseDateKey(recommendationWeek());
   const friday = new Date(monday);
   friday.setDate(friday.getDate() + 4);
-  return `Semana del ${formatDate(monday)} al ${formatDate(friday)}`;
+  return `Semana recomendada del ${formatDate(monday)} al ${formatDate(friday)}`;
 }
 
-function storageKey(index) {
-  return `${STORAGE_PREFIX}:${dateKey()}:${state.plan.days[index].id}`;
+function storageKey(dayId) {
+  return `${STORAGE_PREFIX}:${recommendationWeek()}:${dayId}`;
+}
+
+function recommendationFor(dayId, exerciseId) {
+  return state.recommendation.days?.[dayId]?.exercises?.[exerciseId] || { series: [] };
 }
 
 function blankRecord(exercise) {
-  return { weights: Array(exercise.sets).fill(""), reps: Array(exercise.sets).fill(""), rir: "", feeling: "", discomfort: "", lumbarPain: "" };
+  const planned = recommendationFor(state.plan.days[state.selectedIndex]?.id, exercise.id);
+  return {
+    series: planned.series.map(() => ({ weight: "", reps: "" })),
+    rir: "",
+    feeling: "",
+    discomfort: "",
+    lumbarPain: ""
+  };
+}
+
+function normalizeRecord(exercise, saved) {
+  const blank = blankRecord(exercise);
+  if (!saved) return blank;
+  const series = Array.isArray(saved.series)
+    ? saved.series.map((set) => ({ weight: set.weight ?? "", reps: set.reps ?? "" }))
+    : blank.series;
+  return {
+    ...blank,
+    ...saved,
+    series,
+    rir: saved.rir ?? "",
+    feeling: saved.feeling ?? "",
+    discomfort: saved.discomfort ?? "",
+    lumbarPain: saved.lumbarPain ?? ""
+  };
 }
 
 function loadDay(index) {
-  const saved = JSON.parse(localStorage.getItem(storageKey(index)) || "null");
-  state.records = Object.fromEntries(state.plan.days[index].exercises.map((exercise, i) => {
-    const savedRecord = saved?.records?.[i] || {};
-    const oldWeight = savedRecord.weight || "";
-    return [i, {
-      ...blankRecord(exercise),
-      ...savedRecord,
-      weights: Array.from({ length: exercise.sets }, (_, setIndex) => savedRecord.weights?.[setIndex] ?? oldWeight),
-      reps: Array.from({ length: exercise.sets }, (_, setIndex) => savedRecord.reps?.[setIndex] || "")
-    }];
-  }));
+  const day = state.plan.days[index];
+  const saved = readStorage(storageKey(day.id));
+  state.records = Object.fromEntries(day.exercises.map((exercise) => [exercise.id, normalizeRecord(exercise, saved?.records?.[exercise.id])]));
   state.session = saved?.session || { status: "normal", painStart: "", painEnd: "", painNext: "", comments: "" };
   state.warmup = saved?.warmup || {};
   state.completed = Boolean(saved?.completed);
 }
 
+function readStorage(key) {
+  try {
+    return JSON.parse(localStorage.getItem(key) || "null");
+  } catch {
+    return null;
+  }
+}
+
 function saveDay() {
   if (state.selectedIndex < 0) return;
-  localStorage.setItem(storageKey(state.selectedIndex), JSON.stringify({
-    version: 2,
-    weekStart: dateKey(),
-    day: state.plan.days[state.selectedIndex].id,
+  const day = state.plan.days[state.selectedIndex];
+  localStorage.setItem(storageKey(day.id), JSON.stringify({
+    version: STORAGE_VERSION,
+    weekStart: recommendationWeek(),
+    day: day.id,
     records: state.records,
     session: state.session,
     warmup: state.warmup,
@@ -124,11 +200,7 @@ function selectDay(index) {
 }
 
 function renderDayPicker() {
-  $("#day-picker").innerHTML = state.plan.days.map((day, index) => `<button class="day-tab" type="button" role="tab" aria-selected="false" data-day-index="${index}">${day.label}</button>`).join("");
-  $("#day-picker").addEventListener("click", (event) => {
-    const button = event.target.closest("[data-day-index]");
-    if (button) selectDay(Number(button.dataset.dayIndex));
-  });
+  $("#day-picker").innerHTML = state.plan.days.map((day, index) => `<button class="day-tab" type="button" role="tab" aria-selected="false" data-day-index="${index}">${escapeHTML(day.label)}</button>`).join("");
 }
 
 function render() {
@@ -153,6 +225,7 @@ function render() {
     $("#day-title").textContent = day.name;
     $("#day-focus").textContent = day.focus;
     $("#exercise-count").textContent = `${day.exercises.length} ejercicios`;
+    $("#recommendation-label").textContent = `Recomendación publicada: ${formatDate(parseDateKey(recommendationWeek()))}`;
     renderWarmup();
     renderSessionFields();
     renderExercises(day);
@@ -163,9 +236,16 @@ function render() {
   [...document.querySelectorAll(".day-tab")].forEach((button, index) => button.setAttribute("aria-selected", String(index === state.selectedIndex)));
 }
 
+function renderLegacyNotice() {
+  const notice = $("#legacy-notice");
+  if (!notice) return;
+  notice.classList.toggle("hidden", state.legacyKeys.length === 0);
+  notice.textContent = state.legacyKeys.length ? "Hay datos de una versión anterior conservados como legado. Exporta una copia antes de borrar los datos del navegador." : "";
+}
+
 function renderWarmup() {
   const steps = state.plan.warmup.steps;
-  $("#warmup-list").innerHTML = steps.map((step) => `<div class="warmup-step"><input type="checkbox" id="warmup-${step.id}" data-warmup="${step.id}" ${state.warmup[step.id] ? "checked" : ""}><label for="warmup-${step.id}"><strong>${step.title}</strong><span class="warmup-detail">${step.detail}</span></label></div>`).join("");
+  $("#warmup-list").innerHTML = steps.map((step) => `<div class="warmup-step"><input type="checkbox" id="warmup-${step.id}" data-warmup="${step.id}" ${state.warmup[step.id] ? "checked" : ""}><label for="warmup-${step.id}"><strong>${escapeHTML(step.title)}</strong><span class="warmup-detail">${escapeHTML(step.detail)}</span></label></div>`).join("");
   const done = steps.filter((step) => state.warmup[step.id]).length;
   $("#warmup-status").textContent = `${done}/${steps.length}`;
   $("#warmup-required").classList.toggle("hidden", done === steps.length);
@@ -179,20 +259,25 @@ function renderSessionFields() {
 
 function renderExercises(day) {
   $("#exercise-list").innerHTML = day.exercises.map((exercise, index) => {
-    const record = state.records[index] || blankRecord(exercise);
-    const sets = Array.from({ length: exercise.sets }, (_, setIndex) => `<div class="set-fields"><span class="set-label">Serie ${setIndex + 1}</span><label>Peso <span class="unit">kg o unidad</span><input type="text" inputmode="decimal" placeholder="-" data-exercise="${index}" data-field="weights" data-set="${setIndex}" value="${escapeHTML(record.weights?.[setIndex] || "")}"></label><label>Repeticiones<input type="number" min="0" inputmode="numeric" placeholder="-" data-exercise="${index}" data-field="reps" data-set="${setIndex}" value="${escapeHTML(record.reps[setIndex] || "")}"></label></div>`).join("");
-    const lumbar = exercise.lumbar ? `<label class="lumbar-field">Dolor lumbar durante <span class="unit">0-10</span><select data-exercise="${index}" data-field="lumbarPain"><option value="">-</option>${painOptions(record.lumbarPain)}</select></label>` : "";
+    const recommendation = recommendationFor(day.id, exercise.id);
+    const record = state.records[exercise.id] || blankRecord(exercise);
+    const sets = record.series.map((set, setIndex) => {
+      const planned = recommendation.series[setIndex];
+      const plannedText = planned ? `Previsto: ${planned.weight} kg/unidad · ${planned.repsMin}-${planned.repsMax} rep · RIR ${planned.rir}` : "Serie adicional sin previsión";
+      return `<div class="set-fields${planned ? "" : " actual-only-set"}"><span class="set-label">Serie ${setIndex + 1}</span><div class="planned-set">${escapeHTML(plannedText)}</div><label>Peso real <span class="unit">kg/unidad</span><input type="text" inputmode="decimal" placeholder="-" data-exercise-id="${exercise.id}" data-field="weight" data-set="${setIndex}" value="${escapeHTML(set.weight)}"></label><label>Repeticiones<input type="number" min="0" inputmode="numeric" placeholder="-" data-exercise-id="${exercise.id}" data-field="reps" data-set="${setIndex}" value="${escapeHTML(set.reps)}"></label><button type="button" class="remove-set-button" data-action="remove-set" data-exercise-id="${exercise.id}" data-set="${setIndex}" aria-label="Eliminar serie ${setIndex + 1}">Quitar</button></div>`;
+    }).join("");
+    const lumbar = exercise.lumbar ? `<label class="lumbar-field">Dolor lumbar durante <span class="unit">0-10</span><select data-exercise-id="${exercise.id}" data-field="lumbarPain"><option value="">-</option>${painOptions(record.lumbarPain)}</select></label>` : "";
     return `<article class="exercise-card">
-      <div class="exercise-title"><span class="exercise-number">${index + 1}.</span><h3>${exercise.name}</h3></div>
-      <p class="exercise-target"><span>Objetivo: ${exercise.setsLabel || exercise.sets} series × ${exercise.reps} rep</span><span>RIR ${exercise.rir}</span><span>Descanso ${exercise.rest}</span></p>
-      <p class="alternatives"><strong>Posibles ejercicios/máquinas:</strong> ${exercise.alternatives}</p>
-      ${exercise.note ? `<p class="exercise-note">${exercise.note}</p>` : ""}
+      <div class="exercise-title"><span class="exercise-number">${index + 1}.</span><div><h3>${escapeHTML(exercise.name)}</h3><p class="machine-label">Máquina: ${escapeHTML(exercise.machine)}</p></div></div>
+      <p class="exercise-target"><span>Objetivo: ${escapeHTML(exercise.setsLabel || exercise.sets)} series × ${escapeHTML(exercise.reps)} rep</span><span>RIR ${escapeHTML(exercise.rir)}</span><span>Descanso ${escapeHTML(exercise.rest)}</span></p>
+      ${exercise.setup ? `<p class="setup-note"><strong>Configuración y técnica:</strong> ${escapeHTML(exercise.setup)}</p>` : ""}
       <p class="actual-label">REALIZADO</p>
-      <div class="exercise-main-fields"><label>RIR real <span class="unit">repeticiones en reserva</span><select data-exercise="${index}" data-field="rir"><option value="">-</option>${rirOptions(record.rir)}</select></label></div>
+      <div class="exercise-main-fields"><label>RIR real <span class="unit">repeticiones en reserva</span><select data-exercise-id="${exercise.id}" data-field="rir"><option value="">-</option>${rirOptions(record.rir)}</select></label></div>
       <div class="set-grid">${sets}</div>
-      <label>Sensaciones<textarea rows="2" data-exercise="${index}" data-field="feeling" placeholder="Cómodo, difícil, buena máquina...">${escapeHTML(record.feeling || "")}</textarea></label>
-      <div class="quick-buttons">${["👍 Bien", "😐 Normal", "👎 Mal"].map((text) => `<button type="button" class="quick-button${record.feeling === text.slice(2) ? " selected" : ""}" data-quick="${index}" data-value="${text.slice(2)}">${text}</button>`).join("")}</div>
-      <label>Molestias<textarea rows="2" data-exercise="${index}" data-field="discomfort" placeholder="Ninguna, leve, moderada...">${escapeHTML(record.discomfort || "")}</textarea></label>
+      <button type="button" class="add-set-button" data-action="add-set" data-exercise-id="${exercise.id}">+ Añadir serie realizada</button>
+      <label>Sensaciones<textarea rows="2" data-exercise-id="${exercise.id}" data-field="feeling" placeholder="Cómodo, difícil, buena máquina...">${escapeHTML(record.feeling)}</textarea></label>
+      <div class="quick-buttons">${["👍 Bien", "😐 Normal", "👎 Mal"].map((text) => `<button type="button" class="quick-button${record.feeling === text.slice(2) ? " selected" : ""}" data-action="quick" data-exercise-id="${exercise.id}" data-value="${text.slice(2)}">${text}</button>`).join("")}</div>
+      <label>Molestias<textarea rows="2" data-exercise-id="${exercise.id}" data-field="discomfort" placeholder="Ninguna, leve, moderada...">${escapeHTML(record.discomfort)}</textarea></label>
       ${lumbar}
     </article>`;
   }).join("");
@@ -202,29 +287,42 @@ function painOptions(value) { return Array.from({ length: 11 }, (_, i) => `<opti
 function rirOptions(value) { return [0, 1, 2, 3, 4, "5+"].map((i) => `<option value="${i}"${String(value) === String(i) ? " selected" : ""}>${i}</option>`).join(""); }
 function escapeHTML(value) { return String(value).replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[character])); }
 
+function ensureRecord(exerciseId) {
+  const exercise = state.plan.days[state.selectedIndex].exercises.find((item) => item.id === exerciseId);
+  state.records[exerciseId] = state.records[exerciseId] || blankRecord(exercise);
+  return state.records[exerciseId];
+}
+
 function handleInput(event) {
   const field = event.target.dataset.sessionField;
   if (field) { state.session[field] = event.target.value; saveDay(); renderSummary(); return; }
-  const index = event.target.dataset.exercise;
   const warmup = event.target.dataset.warmup;
   if (warmup) { state.warmup[warmup] = event.target.checked; saveDay(); render(); return; }
-  if (index === undefined) return;
-  const record = state.records[index] || blankRecord(state.plan.days[state.selectedIndex].exercises[index]);
+  const exerciseId = event.target.dataset.exerciseId;
+  if (!exerciseId) return;
+  const record = ensureRecord(exerciseId);
   const fieldName = event.target.dataset.field;
-  if (fieldName === "reps") record.reps[Number(event.target.dataset.set)] = event.target.value;
-  else if (fieldName === "weights") record.weights[Number(event.target.dataset.set)] = event.target.value;
+  if (fieldName === "weight" || fieldName === "reps") record.series[Number(event.target.dataset.set)][fieldName] = event.target.value;
   else record[fieldName] = event.target.value;
-  state.records[index] = record;
+  state.records[exerciseId] = record;
   saveDay();
   renderSummary();
 }
 
-function handleQuickButton(event) {
-  const button = event.target.closest("[data-quick]");
+function handleAction(event) {
+  const button = event.target.closest("[data-action], [data-day-index]");
   if (!button) return;
-  const index = button.dataset.quick;
-  state.records[index] = state.records[index] || blankRecord(state.plan.days[state.selectedIndex].exercises[index]);
-  state.records[index].feeling = button.dataset.value;
+  if (button.dataset.dayIndex !== undefined) { selectDay(Number(button.dataset.dayIndex)); return; }
+  const exerciseId = button.dataset.exerciseId;
+  const record = ensureRecord(exerciseId);
+  if (button.dataset.action === "quick") {
+    record.feeling = button.dataset.value;
+  } else if (button.dataset.action === "add-set") {
+    record.series.push({ weight: "", reps: "" });
+  } else if (button.dataset.action === "remove-set") {
+    record.series.splice(Number(button.dataset.set), 1);
+  }
+  state.records[exerciseId] = record;
   saveDay();
   renderExercises(state.plan.days[state.selectedIndex]);
   renderSummary();
@@ -233,17 +331,15 @@ function handleQuickButton(event) {
 function sessionSummary() {
   if (state.selectedIndex < 0) return "Hoy no hay entrenamiento.";
   const day = state.plan.days[state.selectedIndex];
-  const date = formatDate(new Date());
-  const lines = [`${day.name} - ${date}`, `${day.label} | ${day.focus}`, ""];
+  const lines = [`${day.name} - ${formatDate(new Date())}`, `${day.label} | ${day.focus}`, `Recomendación: semana del ${formatDate(parseDateKey(recommendationWeek()))}`, ""];
   day.exercises.forEach((exercise, index) => {
-    const record = state.records[index] || blankRecord(exercise);
-    lines.push(`${index + 1}. ${exercise.name}`);
-    lines.push(`Objetivo: ${exercise.setsLabel || exercise.sets} series x ${exercise.reps}, RIR ${exercise.rir}, descanso ${exercise.rest}`);
-    const series = record.reps.map((reps, setIndex) => {
-      const weight = record.weights?.[setIndex] || "sin peso";
-      return reps || record.weights?.[setIndex] ? `S${setIndex + 1}: ${weight} kg/unidad x ${reps || "-"}` : "";
-    }).filter(Boolean).join(" | ");
-    lines.push(`Realizado: ${series || "sin series registradas"} | RIR real ${record.rir || "-"}`);
+    const recommendation = recommendationFor(day.id, exercise.id);
+    const record = state.records[exercise.id] || blankRecord(exercise);
+    lines.push(`${index + 1}. ${exercise.name} (${exercise.machine})`);
+    const planned = recommendation.series.map((set, setIndex) => `S${setIndex + 1}: ${set.weight} kg/unidad x ${set.repsMin}-${set.repsMax}, RIR ${set.rir}`).join(" | ");
+    lines.push(`Previsto: ${planned || "sin previsión"}`);
+    const actual = record.series.map((set, setIndex) => set.reps || set.weight ? `S${setIndex + 1}: ${set.weight || "sin peso"} kg/unidad x ${set.reps || "-"}` : "").filter(Boolean).join(" | ");
+    lines.push(`Realizado: ${actual || "sin series registradas"} | RIR real ${record.rir || "-"}`);
     lines.push(`Sensaciones: ${record.feeling || "-"} | Molestias: ${record.discomfort || "-"}`);
     if (exercise.lumbar) lines.push(`Dolor lumbar durante: ${record.lumbarPain === "" ? "-" : `${record.lumbarPain}/10`}`);
     lines.push("");
@@ -272,6 +368,7 @@ function finishSession() {
   $("#summary-section").classList.remove("hidden");
   $("#summary-section").scrollIntoView({ behavior: "smooth" });
 }
+
 async function copySummary() { await copyText(sessionSummary()); showActionMessage("Resumen copiado"); }
 async function copyText(text) { if (navigator.clipboard) return navigator.clipboard.writeText(text); const area = document.createElement("textarea"); area.value = text; document.body.appendChild(area); area.select(); document.execCommand("copy"); area.remove(); }
 function showActionMessage(message) { const status = $("#save-status"); status.textContent = `✓ ${message}`; setTimeout(() => { status.textContent = "✓ Guardado"; }, 1800); }
@@ -279,9 +376,39 @@ function sendWhatsApp() { const number = CONFIG.whatsappNumber.replace(/\D/g, ""
 function sendEmail() { window.location.href = `mailto:${CONFIG.emailAddress}?subject=${encodeURIComponent(`Entrenamiento ${state.plan.days[state.selectedIndex].name}`)}&body=${encodeURIComponent(sessionSummary())}`; }
 async function shareSummary() { try { await navigator.share({ title: "Entrenamiento", text: sessionSummary() }); } catch (error) { if (error.name !== "AbortError") showActionMessage("No se pudo compartir"); } }
 
-function updateShareButton() { $("#share-button").classList.toggle("hidden", !(navigator.share)); }
-function allStoredData() { const data = {}; for (let i = 0; i < localStorage.length; i++) { const key = localStorage.key(i); if (key?.startsWith(STORAGE_PREFIX)) data[key] = JSON.parse(localStorage.getItem(key)); } return data; }
-function exportData() { const blob = new Blob([JSON.stringify(allStoredData(), null, 2)], { type: "application/json" }); const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = `entrenamientos-${dateKey()}.json`; link.click(); URL.revokeObjectURL(link.href); }
-function clearDay() { if (!confirm("¿Seguro que quieres borrar los datos de esta sesión?\n\nEsta acción no se puede deshacer.")) return; localStorage.removeItem(storageKey(state.selectedIndex)); render(); showActionMessage("Datos borrados"); }
+function findLegacyKeys() {
+  const keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key?.startsWith(`${LEGACY_PREFIX}:`)) keys.push(key);
+  }
+  return keys;
+}
 
+function allStoredData() {
+  const data = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key?.startsWith("entrenamiento-padre-")) data[key] = readStorage(key);
+  }
+  return data;
+}
+
+function exportData() {
+  const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), recommendation: state.recommendation, records: allStoredData() }, null, 2)], { type: "application/json" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `entrenamientos-${recommendationWeek()}.json`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+function clearDay() {
+  if (!confirm("¿Seguro que quieres borrar los datos de esta sesión?\n\nEsta acción no se puede deshacer.")) return;
+  localStorage.removeItem(storageKey(state.plan.days[state.selectedIndex].id));
+  render();
+  showActionMessage("Datos borrados");
+}
+
+function updateShareButton() { $("#share-button").classList.toggle("hidden", !(navigator.share)); }
 updateShareButton();

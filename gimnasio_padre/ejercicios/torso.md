@@ -1,19 +1,16 @@
-# Biblioteca: torso
+# Ejercicios fijos: torso
 
-**Objetivo:** combinar empuje y tiron del tren superior en una sesion equilibrada y de volumen contenido.
+## Ejercicios
 
-## Opciones por patron
+- `torso-incline-impulse`: Press banca inclinado en maquina Impulse.
+- `torso-row-titan`: Remo en maquina Titan.
+- `torso-lateral-dhz`: Vuelos laterales en maquina Dhz.
+- `torso-overhead-triceps`: Polea sin agarre por encima de la cabeza para triceps.
 
-- **Empuje horizontal:** maquina con respaldo, mancuernas sentado o variante guiada.
-- **Tiron horizontal:** remo con pecho apoyado, remo sentado o polea.
-- **Tiron vertical:** jalon o maquina estable.
-- **Empuje vertical:** maquina o mancuernas sentado con respaldo.
-- **Complemento:** deltoides posterior, elevacion lateral, pecho o brazos.
+## Configuraciones iniciales conocidas
 
-## Ejecucion y sensaciones
+- Remo Titan: pecho 2 desde arriba y asiento igual.
+- Vuelos laterales Dhz: altura 6 y posicion 1.
+- Polea de triceps: altura 15.
 
-Alternar empuje y tiron si ayuda a gestionar el tiempo, sin convertirlo en un circuito apresurado. Mantener descansos suficientes y buscar trabajo en el musculo objetivo, con tronco estable y sin compensacion lumbar.
-
-## Cuando usar o cambiar
-
-Elegir dos patrones principales y un tercero segun recuperacion y preferencias. El complemento se puede omitir. Sustituir una opcion si causa molestias repetidas, requiere impulso o resulta claramente menos comoda que otra del mismo patron. Nivel inicial: bajo a moderado.
+Si el ajuste cambia, anotarlo en las sensaciones del ejercicio y comunicarlo en el resumen semanal.

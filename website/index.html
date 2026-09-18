@@ -11,10 +11,11 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="header-inner">
-      <p class="eyebrow">ENTRENAMIENTO</p>
-      <h1>Qué toca hoy</h1>
-      <p id="week-label" class="week-label"></p>
+      <div class="header-inner">
+        <p class="eyebrow">ENTRENAMIENTO</p>
+        <h1>Qué toca hoy</h1>
+        <p id="week-label" class="week-label"></p>
+        <p id="recommendation-label" class="recommendation-label"></p>
     </div>
   </header>
 
@@ -117,8 +118,9 @@
       </div>
     </section>
 
-    <details class="options">
-      <summary>Opciones</summary>
+     <details class="options">
+       <summary>Opciones</summary>
+      <p id="legacy-notice" class="legacy-notice hidden" role="status"></p>
       <button id="export-button" class="text-button" type="button">💾 Exportar datos</button>
       <button id="clear-button" class="text-button danger" type="button">Borrar datos de este día</button>
     </details>

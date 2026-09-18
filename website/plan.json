@@ -1,6 +1,6 @@
 {
-  "version": "0.1",
-  "title": "Plan activo",
+  "version": "1.0",
+  "title": "Plan fijo de entrenamiento",
   "duration": "45-60 minutos",
   "warmup": {
     "title": "Calentamiento obligatorio",
@@ -17,10 +17,10 @@
       "name": "EMPUJE",
       "focus": "Empuje horizontal, empuje vertical y complementos",
       "exercises": [
-        { "name": "Empuje horizontal", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Press de pecho en máquina, press con mancuernas sentado, máquina guiada", "note": "Espalda apoyada cuando sea posible. No arquear la zona lumbar." },
-        { "name": "Empuje vertical", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Press de hombros en máquina, mancuernas sentado con respaldo, polea estable", "note": "Mantener el tronco estable y no compensar con la espalda." },
-        { "name": "Complemento de pecho u hombro", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "3", "rest": "90-120 s", "alternatives": "Aperturas en máquina, elevaciones laterales, press de pecho ligero" },
-        { "name": "Tríceps", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "alternatives": "Extensión de tríceps en polea, máquina de tríceps, mancuerna" }
+        { "id": "push-bench-impulse", "name": "Press banca en máquina Impulse", "machine": "Impulse", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "setup": "Espalda apoyada y recorrido controlado. No arquear la zona lumbar." },
+        { "id": "push-shoulder-titan", "name": "Press militar en máquina Titan", "machine": "Titan", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "setup": "Mantener el tronco estable y no compensar con la espalda." },
+        { "id": "push-fly", "name": "Aperturas", "machine": "Máquina de aperturas", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "3", "rest": "90-120 s", "setup": "Ajustar el asiento para que los brazos trabajen con control." },
+        { "id": "push-triceps-cable-z", "name": "Empujón hacia abajo con polea y barra Z para tríceps", "machine": "Polea con barra Z", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "setup": "Mantener los codos estables y evitar inclinar el tronco." }
       ]
     },
     {
@@ -29,34 +29,34 @@
       "name": "TIRÓN",
       "focus": "Tirones vertical y horizontal, espalda alta y brazos",
       "exercises": [
-        { "name": "Tirón vertical", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Jalón en polea, máquina de jalón, máquina convergente", "note": "No usar impulso." },
-        { "name": "Tirón horizontal", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Remo sentado, máquina de remo con pecho apoyado, remo en polea", "note": "Priorizar apoyo del pecho si reduce el esfuerzo lumbar." },
-        { "name": "Deltoides posterior/escápula", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Apertura inversa en máquina, apertura inversa en polea, máquina de hombro posterior" },
-        { "name": "Bíceps", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "alternatives": "Curl con mancuernas, curl en polea, máquina de bíceps" }
+        { "id": "pull-lat-flex", "name": "Jalón al pecho en máquina Flex", "machine": "Flex", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "setup": "No usar impulso. Mantener el tronco estable." },
+        { "id": "pull-row-dhz", "name": "Remo con agarre prono en máquina Dhz", "machine": "Dhz", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3", "rest": "2 min", "setup": "Mantener el pecho apoyado y evitar despegarse para mover más peso." },
+        { "id": "pull-rear-delt-impulse", "name": "Mariposas para hombro posterior en máquina Impulse", "machine": "Impulse", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "setup": "Ajustar el asiento y el agarre para trabajar el hombro posterior sin impulso." },
+        { "id": "pull-biceps-dhz", "name": "Curl de bíceps en máquina Dhz", "machine": "Dhz", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "setup": "Mantener los brazos apoyados y controlar la vuelta." }
       ]
     },
     {
       "id": "legs-a",
-      "label": "Miercoles",
+      "label": "Miércoles",
       "name": "PIERNAS A",
       "focus": "Dominante de rodilla, cadera, gemelos y abdomen",
       "exercises": [
-        { "name": "Dominante de rodilla", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "alternatives": "Sentadilla pendular, prensa de piernas, sentarse y levantarse de un banco" },
-        { "name": "Extensión de cadera", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "alternatives": "Puente de glúteos, máquina de extensión de cadera, bisagra guiada ligera", "note": "La espalda baja no debe ser el limitante principal." },
-        { "name": "Flexión de rodilla o gemelos", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Curl de piernas sentado o tumbado, máquina de gemelos sentado o de pie" },
-        { "name": "Abdomen y estabilidad", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "alternatives": "Presión de manos, paseo con una carga ligera, máquina de abdomen estable" }
+        { "id": "legs-a-hack-dhz", "name": "Sentadilla jaca en máquina Dhz", "machine": "Dhz", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "setup": "Mantener la pelvis estable y no buscar profundidad a costa de la zona lumbar." },
+        { "id": "legs-a-hip-thrust-dhz", "name": "Hip Thrust en máquina Dhz", "machine": "Dhz", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "setup": "Buscar el trabajo de glúteos sin hiperextender la espalda." },
+        { "id": "legs-a-calf", "name": "Gemelos en máquina", "machine": "Máquina de gemelos", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "setup": "Usar un recorrido controlado y sin rebotes." },
+        { "id": "legs-a-hanging-ab", "name": "Abdomen colgado de la barra", "machine": "Barra", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "setup": "Mantener el tronco controlado y detenerse antes de perder la posición." }
       ]
     },
     {
       "id": "torso",
       "label": "Jueves",
       "name": "TORSO",
-      "focus": "Empuje y tiron equilibrados",
+      "focus": "Empuje y tirón equilibrados",
       "exercises": [
-        { "name": "Empuje horizontal", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Press de pecho en máquina, press con mancuernas sentado, máquina guiada" },
-        { "name": "Tirón horizontal", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "alternatives": "Remo con pecho apoyado, máquina de remo, remo en polea" },
-        { "name": "Tirón vertical o empuje vertical", "sets": 2, "reps": "8-12", "rir": "3", "rest": "2 min", "alternatives": "Jalón en polea, máquina de espalda, press de hombros en máquina" },
-        { "name": "Complemento de hombro, brazos o pecho", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "alternatives": "Apertura inversa, curl de bíceps, extensión de tríceps o press ligero" }
+        { "id": "torso-incline-impulse", "name": "Press banca inclinado en máquina Impulse", "machine": "Impulse", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "setup": "Pecho y espalda apoyados. Mantener un recorrido estable." },
+        { "id": "torso-row-titan", "name": "Remo en máquina Titan", "machine": "Titan", "sets": 2, "reps": "6-10", "rir": "3", "rest": "2 min", "setup": "Configuración inicial registrada: pecho 2 desde arriba; asiento igual." },
+        { "id": "torso-lateral-dhz", "name": "Vuelos laterales en máquina Dhz", "machine": "Dhz", "sets": 2, "reps": "8-12", "rir": "3", "rest": "2 min", "setup": "Configuración inicial registrada: altura 6 y posición 1." },
+        { "id": "torso-overhead-triceps", "name": "Polea sin agarre por encima de la cabeza para tríceps", "machine": "Polea", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "setup": "Configuración inicial registrada: altura 15." }
       ]
     },
     {
@@ -65,10 +65,10 @@
       "name": "PIERNAS B",
       "focus": "Rodilla o cadera, cadena posterior prudente y abdomen",
       "exercises": [
-        { "name": "Dominante de rodilla o cadera", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3-4", "rest": "2-3 min", "alternatives": "Sentadilla pendular o prensa de piernas si trabajan más los cuádriceps; puente o máquina de cadera si trabajan más los glúteos" },
-        { "name": "Flexión de rodilla/cadena posterior", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "alternatives": "Curl de piernas sentado, curl tumbado o máquina con apoyo estable" },
-        { "name": "Extensión de cadera o espalda baja", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "4", "rest": "2 min", "alternatives": "Puente de glúteos, máquina de extensión de cadera, banco de extensiones sin carga", "lumbar": true, "note": "Probar con resistencia mínima. No hacerla con la espalda fatigada o si empeora la molestia." },
-        { "name": "Abdomen y estabilidad", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "alternatives": "Presión de manos, paseo con carga ligera o máquina de abdomen estable", "lumbar": true }
+        { "id": "legs-b-press-dhz", "name": "Prensa Dhz", "machine": "Dhz", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3-4", "rest": "2-3 min", "setup": "Mantener la pelvis estable y no buscar profundidad a costa de la zona lumbar." },
+        { "id": "legs-b-leg-curl-impulse", "name": "Curl femoral en máquina Impulse", "machine": "Impulse", "sets": 2, "reps": "8-12", "rir": "3-4", "rest": "2 min", "setup": "Usar un apoyo estable y controlar la vuelta." },
+        { "id": "legs-b-back-extension-dhz", "name": "Extensión lumbar en máquina Dhz", "machine": "Dhz", "sets": 2, "setsLabel": "1-2", "reps": "8-12", "rir": "4", "rest": "2 min", "lumbar": true, "setup": "Empezar sin carga o con resistencia mínima. No hacerla si la espalda está fatigada o empeora la molestia." },
+        { "id": "legs-b-pallof", "name": "Pallof Press (Abdomen)", "machine": "Polea", "sets": 2, "setsLabel": "1-2", "reps": "8-12 o 20-30 s", "rir": "3", "rest": "60-90 s", "lumbar": true, "setup": "Mantener el tronco estable y detenerse antes de perder el control." }
       ]
     }
   ]
