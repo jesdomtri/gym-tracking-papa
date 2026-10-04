@@ -5,7 +5,7 @@
 - `pull-lat-flex`: Jalon al pecho en maquina Flex.
 - `pull-row-dhz`: Remo con agarre prono en maquina Dhz.
 - `pull-rear-delt-impulse`: Mariposas para hombro posterior en maquina Impulse.
-- `pull-biceps-dhz`: Curl de biceps en maquina Dhz.
+- `pull-biceps-impulse`: Curl de biceps en maquina Impulse. Los registros anteriores en Dhz conservan el ID historico `pull-biceps-dhz`; no comparar las cargas entre maquinas.
 
 ## Tecnica y registro
 

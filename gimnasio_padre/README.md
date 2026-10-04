@@ -12,7 +12,7 @@ Sistema para planificar, entrenar, registrar, analizar y ajustar el entrenamient
 4. El cliente registra el resultado real en la web. Los datos se guardan en `localStorage` y se pueden exportar.
 5. El cliente envia el resumen terminado por WhatsApp.
 6. El entrenador revisa el informe y publica manualmente la siguiente recomendacion.
-7. Al cerrar la semana, se copia `semana_actual.md` a `historial/` con el siguiente numero libre. Nunca se sobrescribe una semana anterior.
+7. Al cerrar la semana, conservar el resumen en un fichero fechado `historial/semana_YYYY-MM-DD.md` (fecha del lunes). Nunca se sobrescribe una semana anterior; `semana_actual.md` sigue siendo la plantilla de trabajo.
 
 La web no modifica estos archivos Markdown. La carpeta `evaluaciones/` puede contener revisiones cada 4-6 semanas o cuando exista un cambio relevante.
 
@@ -52,7 +52,7 @@ Si la molestia aumenta claramente, cambia la forma de moverse, irradia, persiste
 
 ## Progresion manual
 
-La progresion se revisa normalmente cada 2-3 semanas. El entrenador compara sesiones del mismo ID de ejercicio y considera:
+La progresion se revisa normalmente cada 2-3 semanas. El entrenador compara sesiones del mismo ID y la misma maquina, y considera:
 
 - Repeticiones realizadas frente al rango previsto.
 - RIR real frente al objetivo.
@@ -60,7 +60,9 @@ La progresion se revisa normalmente cada 2-3 semanas. El entrenador compara sesi
 - Estado de fatiga.
 - Molestias y respuesta del dia siguiente.
 
-El entrenador puede subir, mantener o bajar peso, series y repeticiones en `website/recommendation.json`. La web no calcula ni publica progresiones automaticamente.
+En doble progresion se mantiene el rango propuesto y se sube la carga cuando todas las series previstas y validas alcanzan o superan el maximo. Si un resultado fiable queda por debajo del minimo, se revisa una reduccion; en los demas casos se mantiene la carga y se buscan mas repeticiones dentro del rango. Se usa el menor salto disponible solo si esta confirmado para la maquina. Los datos ausentes quedan desconocidos; los valores dudosos excluidos por el entrenador no deciden la carga, aunque se conservan en el historico.
+
+El entrenador puede ajustar manualmente peso, series, repeticiones y RIR en `website/recommendation.json`. No inferir RIR real, dolor ni respuesta posterior si el cliente no los informa. La web no calcula ni publica progresiones automaticamente.
 
 ## Biblioteca de apoyo
 

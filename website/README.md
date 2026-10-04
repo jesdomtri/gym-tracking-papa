@@ -16,8 +16,10 @@ Abrir `http://localhost:8000`. No abrir `index.html` con doble clic: la aplicaci
 
 - `plan.json` contiene los ejercicios fijos, sus IDs, maquinas, rangos, RIR, descansos, calentamiento y notas de configuracion. No contiene pesos reales.
 - `recommendation.json` contiene la recomendacion actual publicada por el entrenador: semana, series, peso previsto por serie, rango de repeticiones y RIR.
-- Para preparar la siguiente semana, revisar el resumen recibido por WhatsApp y editar manualmente `recommendation.json`. No se importan mensajes de WhatsApp ni se calcula progresion automaticamente.
+- Para preparar la siguiente semana, revisar los registros del mismo ID y la misma maquina y editar manualmente `recommendation.json`. En doble progresion, aumentar la carga cuando todas las series previstas y validas alcanzan el maximo del rango; reducirla si un resultado fiable queda por debajo del minimo; en los demas casos mantenerla y progresar en repeticiones dentro del rango. Usar solo el menor salto de carga confirmado para esa maquina.
+- Los campos no enviados por el cliente (por ejemplo RIR real, dolor o respuesta al dia siguiente) permanecen desconocidos. Conservar los datos originales aunque el entrenador excluya un valor dudoso de la decision de carga. No importar mensajes de WhatsApp ni calcular/publicar progresiones automaticamente.
 - Si cambia un ejercicio fijo, conservar su ID solo si sigue siendo el mismo ejercicio; una sustitucion requiere un nuevo ID y revision de los datos historicos.
+- El curl de biceps fijo usa `pull-biceps-impulse`; los registros DHZ anteriores mantienen su identidad y no se comparan con cargas de Impulse.
 
 ## Uso del cliente
 
@@ -57,3 +59,4 @@ No inventar ni publicar numeros, correos o nombres por defecto.
 - Aspecto visual: `style.css`.
 - Archivos offline: lista `FILES` de `service-worker.js`; incrementar `CACHE_NAME` despues de cambiar cualquier asset publicado.
 - Los archivos Markdown de `../gimnasio_padre/` son el registro documental del entrenador. La web no los modifica.
+- El historico documental se organiza por semana con ficheros `../gimnasio_padre/historial/semana_YYYY-MM-DD.md`, usando la fecha del lunes.

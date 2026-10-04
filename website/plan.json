@@ -32,7 +32,7 @@
         { "id": "pull-lat-flex", "name": "Jalón al pecho en máquina Flex", "machine": "Flex", "sets": 3, "setsLabel": "2-3", "reps": "5-8", "rir": "3-4", "rest": "2-3 min", "setup": "No usar impulso. Mantener el tronco estable." },
         { "id": "pull-row-dhz", "name": "Remo con agarre prono en máquina Dhz", "machine": "Dhz", "sets": 3, "setsLabel": "2-3", "reps": "6-10", "rir": "3", "rest": "2 min", "setup": "Mantener el pecho apoyado y evitar despegarse para mover más peso." },
         { "id": "pull-rear-delt-impulse", "name": "Mariposas para hombro posterior en máquina Impulse", "machine": "Impulse", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "3", "rest": "90 s", "setup": "Ajustar el asiento y el agarre para trabajar el hombro posterior sin impulso." },
-        { "id": "pull-biceps-dhz", "name": "Curl de bíceps en máquina Dhz", "machine": "Dhz", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "setup": "Mantener los brazos apoyados y controlar la vuelta." }
+        { "id": "pull-biceps-impulse", "name": "Curl de bíceps en máquina Impulse", "machine": "Impulse", "sets": 2, "setsLabel": "1-2", "reps": "10-15", "rir": "2-3", "rest": "90 s", "setup": "Mantener los brazos apoyados y controlar la vuelta." }
       ]
     },
     {

@@ -40,7 +40,7 @@ La web es una aplicacion estatica. Este documento define los ejercicios, maquina
 | `pull-lat-flex` | Jalon al pecho en maquina Flex | Flex | 2-3 | 5-8 | 3-4 | 2-3 min |
 | `pull-row-dhz` | Remo con agarre prono en maquina Dhz | Dhz | 2-3 | 6-10 | 3 | 2 min |
 | `pull-rear-delt-impulse` | Mariposas para hombro posterior en maquina Impulse | Impulse | 1-2 | 10-15 | 3 | 90 s |
-| `pull-biceps-dhz` | Curl de biceps en maquina Dhz | Dhz | 1-2 | 10-15 | 2-3 | 90 s |
+| `pull-biceps-impulse` | Curl de biceps en maquina Impulse | Impulse | 1-2 | 10-15 | 2-3 | 90 s |
 
 ## Dia 3 - Piernas A
 
